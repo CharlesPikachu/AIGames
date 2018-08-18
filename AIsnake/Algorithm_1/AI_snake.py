@@ -1,3 +1,6 @@
+# 作者: Charles
+# 公众号: Charles的皮卡丘
+# AI贪吃蛇
 import random
 import pygame
 import sys
