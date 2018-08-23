@@ -1,0 +1,5 @@
+https://github.com/ravi72munde/Chrome-Dino-Reinforcement-Learning/blob/master/Reinforcement%20Learning%20Dino%20Run.ipynb
+
+https://github.com/DexHunter/DeepLearningTRexRush
+
+https://blog.paperspace.com/dino-run/

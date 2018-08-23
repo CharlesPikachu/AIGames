@@ -7,7 +7,7 @@ use AI to play some games.
 ### AIGobang
 - [Algorithm_1_effect](https://github.com/CharlesPikachu/AIGames/tree/master/AIGobang/Algorithm_1/effect)
 ### AITRexRush
-- Planing...
+- [Algorithm_1_testVersion_effect](https://github.com/CharlesPikachu/AIGames/tree/master/AITRexRush/Algorithm_1/effect)
 
 # More:
 ## WeChat Official Accounts:

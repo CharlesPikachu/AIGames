@@ -1,0 +1,8 @@
+numpy
+selenium
+pillow
+pyautogui
+matplotlib
+python-opencv
+keras
+tensorflow-gpu
