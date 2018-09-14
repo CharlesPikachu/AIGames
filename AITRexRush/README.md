@@ -1,7 +1,7 @@
 # Just a test version!
 
 # AI T-Rex Rush
-- [Algorithm_1_Introduction](None)
+- [Algorithm_1_Introduction](https://mp.weixin.qq.com/s/---yW1v6seT0pcizllTXxw)
 
 # Usage:
 python auto_play.py
