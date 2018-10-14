@@ -1,5 +1,5 @@
 # AI Piano Tiles
-- [Algorithm_1_Introduction]()
+- [Algorithm_1_Introduction](https://mp.weixin.qq.com/s/FxC-enNRkZW4l4INmj5XkA)
 
 # Usage:
 ### Algorithm_1
