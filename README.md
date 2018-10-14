@@ -10,6 +10,8 @@ use AI to play some games.
 - [Algorithm_1_testVersion_effect](https://github.com/CharlesPikachu/AIGames/tree/master/AITRexRush/Algorithm_1/effect)
 ### AIPong
 - [Algorithm_1_effect](None)
+### AIPianoTiles
+- [Algorithm_1_effect](https://github.com/CharlesPikachu/AIGames/tree/master/AIPianoTiles/Algorithm_1/effect)
 
 # More:
 ## WeChat Official Accounts:
