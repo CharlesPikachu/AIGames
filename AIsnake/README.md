@@ -3,7 +3,7 @@
 
 # Usage:
 ### Algorithm_1
-python AI_snake.py
+- python AI_snake.py
 
 # Python Version[Tested]:
 Python3.5, Python3.6

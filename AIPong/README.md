@@ -3,7 +3,7 @@
 
 # Usage:
 ### Algorithm_1
-python main.py
+- python main.py
 
 # Python Version[Tested]:
 Python3.5, Python3.6

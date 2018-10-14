@@ -5,7 +5,7 @@
 
 # Usage:
 ### Algorithm_1
-python auto_play.py
+- python auto_play.py
 
 # Python Version[Tested]:
 Python3.5, Python3.6
