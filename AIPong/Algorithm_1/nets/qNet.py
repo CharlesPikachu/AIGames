@@ -153,7 +153,7 @@ class DQN():
 		conv1 = tf.nn.relu(self.conv2D(x, W_conv1, 4) + b_conv1)
 		pool1 = self.maxpool(conv1)
 		conv2 = tf.nn.relu(self.conv2D(pool1, W_conv2, 2) + b_conv2)
-		conv3 = tf.nn.relu(self.conv2D(conv2, W_conv3, 2) + b_conv3)
+		conv3 = tf.nn.relu(self.conv2D(conv2, W_conv3, 1) + b_conv3)
 		flatten = tf.reshape(conv3, [-1, 1600])
 		fc1 = tf.nn.relu(tf.layers.batch_normalization(tf.matmul(flatten, W_fc1) + b_fc1, training=self.is_train, momentum=0.9))
 		fc2 = tf.matmul(fc1, W_fc2) + b_fc2
