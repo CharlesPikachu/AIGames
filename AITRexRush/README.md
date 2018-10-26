@@ -3,12 +3,14 @@
 # AI T-Rex Rush
 - [Algorithm_1_Introduction](https://mp.weixin.qq.com/s/---yW1v6seT0pcizllTXxw)
 
-# Usage:
+# Usage
 ### Algorithm_1
+- pip install -r requirements.txt
 - python auto_play.py
 
-# Python Version[Tested]:
-Python3.5, Python3.6
+# Python Version[Tested]
+- Python3.5
+- Python3.6
 
 # Requirements
 - numpy
@@ -16,6 +18,6 @@ Python3.5, Python3.6
 - pillow
 - pyautogui
 - matplotlib
-- python-opencv
+- opencv-python
 - keras
 - tensorflow-gpu

@@ -3,6 +3,6 @@ selenium
 pillow
 pyautogui
 matplotlib
-python-opencv
+opencv-python
 keras
 tensorflow-gpu
