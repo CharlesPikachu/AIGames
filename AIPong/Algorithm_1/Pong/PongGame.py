@@ -15,11 +15,9 @@ class PongGame():
 		# 初始化一些变量
 		self.loseReward = -1
 		self.winReward = 1
-		self.hitReward = 0.5
-		# self.paddleSpeed = 15
+		self.hitReward = 0
 		self.paddleSpeed = 15
-		# self.ballSpeed = (7, 7)
-		self.ballSpeed = (5, 5)
+		self.ballSpeed = (7, 7)
 		self.paddle_1_score = 0
 		self.paddle_2_score = 0
 		self.paddle_1_speed = 0.
@@ -37,13 +35,13 @@ class PongGame():
 		self.score1Render = self.font.render(str(self.paddle_1_score), True, (255, 255, 255))
 		self.score2Render = self.font.render(str(self.paddle_2_score), True, (255, 255, 255))
 		self.screen.blit(self.background, (0, 0))
-		# pygame.draw.rect(self.screen, (255, 255, 255), pygame.Rect((5, 5), (630, 470)), 2)
-		# pygame.draw.aaline(self.screen, (255, 255, 255), (320, 5), (320, 475))
+		pygame.draw.rect(self.screen, (255, 255, 255), pygame.Rect((5, 5), (630, 470)), 2)
+		pygame.draw.aaline(self.screen, (255, 255, 255), (320, 5), (320, 475))
 		self.screen.blit(self.paddle_1, self.paddle_1_pos)
 		self.screen.blit(self.paddle_2, self.paddle_2_pos)
 		self.screen.blit(self.ball, self.ball_pos)
-		# self.screen.blit(self.score1Render, (240, 210))
-		# self.screen.blit(self.score2Render, (370, 210))
+		self.screen.blit(self.score1Render, (240, 210))
+		self.screen.blit(self.score2Render, (370, 210))
 		# 行动paddle_1(训练对象)
 		if action[0] == 1:
 			self.paddle_1_speed = 0
@@ -92,8 +90,9 @@ class PongGame():
 			self.ball_pos = self.ball_pos[0], 455
 		# 	更新ball的位置
 		self.ball_pos = self.ball_pos[0] + self.ballSpeed[0], self.ball_pos[1] + self.ballSpeed[1]
-		# 获取当前场景
+		# 获取当前场景(只取左半边)
 		image = pygame.surfarray.array3d(pygame.display.get_surface())
+		# image = image[321:, :]
 		pygame.display.update()
 		terminal = False
 		if max(self.paddle_1_score, self.paddle_2_score) >= 20:

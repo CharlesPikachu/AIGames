@@ -59,7 +59,7 @@ class DQN():
 		scene_now = np.stack((x_now, )*4, axis=2)
 		# 读取和保存checkpoint
 		saver = tf.train.Saver()
-		session.run(tf.initialize_all_variables())
+		session.run(tf.global_variables_initializer())
 		checkpoint = tf.train.get_checkpoint_state(self.modelDir)
 		if checkpoint and checkpoint.model_checkpoint_path:
 			saver.restore(session, checkpoint.model_checkpoint_path)
@@ -92,6 +92,7 @@ class DQN():
 				dataDeque.append((scene_now, action_now, reward, scene_next, terminal))
 				if len(dataDeque) > self.REPLAY_MEMORY:
 					dataDeque.popleft()
+			loss_now = None
 			if (num_frame > self.OBSERVE):
 				minibatch = random.sample(dataDeque, self.batch_size)
 				scene_now_batch = [mb[0] for mb in minibatch]
@@ -105,11 +106,16 @@ class DQN():
 											action_now_ph: action_batch,
 											x: scene_now_batch
 											})
+				loss_now = session.run(loss, feed_dict={
+														target_q_values_ph: target_q_values,
+														action_now_ph: action_batch,
+														x: scene_now_batch
+														})
 			num_frame += 1
 			if num_frame % self.save_interval == 0:
 				name = 'DQN_Pong'
 				saver.save(session, os.path.join(self.modelDir, name), global_step=num_frame)
-			log_content = '<Frame>: %s, <Prob>: %s, <Action>: %s, <Reward>: %s, Q_max: %s' % (str(num_frame), str(prob), str(action_idx), str(reward), str(np.max(q_values)))
+			log_content = '<Frame>: %s, <Prob>: %s, <Action>: %s, <Reward>: %s, <Q_max>: %s, <Loss>: %s' % (str(num_frame), str(prob), str(action_idx), str(reward), str(np.max(q_values)), str(loss_now))
 			logF.write(log_content + '\n')
 			print(log_content)
 		logF.close()
