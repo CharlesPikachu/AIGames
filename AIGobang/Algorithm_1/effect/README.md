@@ -1,1 +1,1 @@
-![giphy](AI_Gobang.gif)
+![giphy](running.gif)

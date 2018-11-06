@@ -14,7 +14,7 @@ options = {
 			'OBSERVE': 50000,
 			'EXPLORE': 50000,
 			'REPLAY_MEMORY': 500000,
-			'action_interval': 5,
+			'action_interval': 7,
 			'gamma': 0.99,
 			'save_interval': 20000,
 			'logfile': 'train.log',

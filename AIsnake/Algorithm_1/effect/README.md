@@ -1,1 +1,1 @@
-![giphy](AI_snake.gif)
+![giphy](running.gif)

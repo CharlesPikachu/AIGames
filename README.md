@@ -9,7 +9,8 @@ use AI to play some games.
 ### AITRexRush
 - [Algorithm_1_testVersion_effect](https://github.com/CharlesPikachu/AIGames/tree/master/AITRexRush/Algorithm_1/effect)
 ### AIPong
-- [Algorithm_1_effect](None)
+- [Algorithm_1_effect](https://github.com/CharlesPikachu/AIGames/tree/master/AIPong/Algorithm_1/effect)
+- [Algorithm_2_effect](https://github.com/CharlesPikachu/AIGames/tree/master/AIPong/Algorithm_2/effect)
 ### AIPianoTiles
 - [Algorithm_1_effect](https://github.com/CharlesPikachu/AIGames/tree/master/AIPianoTiles/Algorithm_1/effect)
 
