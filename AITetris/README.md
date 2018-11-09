@@ -1,5 +1,5 @@
 # AI Tetris
-- [Algorithm_1_Introduction]()
+- [Algorithm_1_Introduction](https://mp.weixin.qq.com/s/9u3HR6aY-XQq56fqGedx5A)
 
 # Usage
 ### Algorithm_1
