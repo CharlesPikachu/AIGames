@@ -4,6 +4,8 @@ use AI to play some games.
 # Contents
 ### AISnake
 - [Algorithm_1_effect](https://github.com/CharlesPikachu/AIGames/tree/master/AIsnake/Algorithm_1/effect)
+### AITetris
+- [Algorithm_1_effect](https://github.com/CharlesPikachu/AIGames/tree/master/AITetris/Algorithm_1/effect)
 ### AIGobang
 - [Algorithm_1_effect](https://github.com/CharlesPikachu/AIGames/tree/master/AIGobang/Algorithm_1/effect)
 ### AITRexRush
