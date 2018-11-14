@@ -6,10 +6,10 @@ use AI to play some games.
 - [Algorithm_1_effect](https://github.com/CharlesPikachu/AIGames/tree/master/AIsnake/Algorithm_1/effect)
 ### AITetris
 - [Algorithm_1_effect](https://github.com/CharlesPikachu/AIGames/tree/master/AITetris/Algorithm_1/effect)
-	-References1: https://luckytoilet.wordpress.com/2011/05/27/coding-a-tetris-ai-using-a-genetic-algorithm/
-	-References2: https://github.com/LoveDaisy/tetris_game
-	-References3: https://codemyroad.wordpress.com/2013/04/14/tetris-ai-the-near-perfect-player/
-	-References4: https://github.com/fthomasmorel/Tetris-AI
+	- References1: https://luckytoilet.wordpress.com/2011/05/27/coding-a-tetris-ai-using-a-genetic-algorithm/
+	- References2: https://github.com/LoveDaisy/tetris_game
+	- References3: https://codemyroad.wordpress.com/2013/04/14/tetris-ai-the-near-perfect-player/
+	- References4: https://github.com/fthomasmorel/Tetris-AI
 ### AIGobang
 - [Algorithm_1_effect](https://github.com/CharlesPikachu/AIGames/tree/master/AIGobang/Algorithm_1/effect)
 ### AITRexRush
