@@ -81,7 +81,7 @@ class TetrisAI():
 				if dists[x_next] > count:
 					dists[x_next] = count
 		return dists
-	''' '''
+	'''计算某方案的得分'''
 	def calcScore(self, board, d_next, x_next, distances):
 		# 下个俄罗斯方块以某种方式模拟到达底部
 		board = self.imitateDropDown(board, self.inner_board.next_tetris, d_next, x_next, distances[x_next])
