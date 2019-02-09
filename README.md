@@ -1,5 +1,7 @@
 # AIGames
+```sh
 use AI to play some games.
+```
 
 # Contents
 ### AISnake
