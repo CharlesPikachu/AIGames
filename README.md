@@ -18,6 +18,6 @@ use AI to play some games.
 - [Algorithm_1_effect](https://github.com/CharlesPikachu/AIGames/tree/master/AIPianoTiles/Algorithm_1/effect)
 
 # More
-### WeChat Official Accounts
-Charles_pikachu  
+#### WeChat Official Accounts
+*Charles_pikachu*
 ![img](pikachu.jpg)
