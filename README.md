@@ -19,5 +19,5 @@ use AI to play some games.
 
 # More
 #### WeChat Official Accounts
-*Charles_pikachu*
+*Charles_pikachu*  
 ![img](pikachu.jpg)
