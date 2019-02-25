@@ -2,7 +2,7 @@
 - [Algorithm_1_Introduction](None)
 
 # Usage
-### Algorithm_1
+#### Algorithm_1
 - pip install -r requirements.txt
 - python main.py
 

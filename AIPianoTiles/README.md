@@ -2,7 +2,7 @@
 - [Algorithm_1_Introduction](https://mp.weixin.qq.com/s/FxC-enNRkZW4l4INmj5XkA)
 
 # Usage
-### Algorithm_1
+#### Algorithm_1
 - pip install -r requirements.txt
 - open http://www.4399.com/flash/154247_3.htm
 - run "python autoplay.py"
