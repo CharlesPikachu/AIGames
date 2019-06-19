@@ -1,21 +1,30 @@
 # AI Gobang
 ```sh
-AI Gobang, more details is preparing.
+use AI to play Gobang.
 ```
 
-# Environment(Tested)
+# Introduction in Chinese
+preparing
+
+# Environment
 - Windows10
 - Python3.5+(have installed necessary dependencies)
+	- tensorflow-gpu == 1.5.0
+	- opencv-python
+	- numpy
+- Graphics: 1050Ti(train and test)
 
 # Usage
-#### step1
+#### train
 ```sh
-pip install -r requirements.txt
+Modify the config.py according to your needs and some explanation in config.py, then run:
+python main.py
 ```
-#### step2
+#### test
 ```sh
-run "python main.py"
+Modify the config.py according to your needs and some explanations in config.py, then run:
+python main.py
 ```
 
 # Game Display
-![giphy](effect/running.gif)
+![giphy](demonstration/running.gif)

@@ -1,11 +1,15 @@
-# AI Snake
+# AI Snake 
 ```sh
-see https://mp.weixin.qq.com/s/gjS_DkZmPzIINDoJhnIKow to learn more details.
+use AI to play snake.
 ```
 
-# Environment(Tested)
+# Introduction in Chinese
+https://mp.weixin.qq.com/s/gjS_DkZmPzIINDoJhnIKow
+
+# Environment
 - Windows10
 - Python3.5+(have installed necessary dependencies)
+	- pygame
 
 # Usage
 #### step1
@@ -14,8 +18,8 @@ pip install -r requirements.txt
 ```
 #### step2
 ```sh
-run "python AI_snake.py"
+run "python AI_snake.py".
 ```
 
 # Game Display
-![giphy](effect/running.gif)
+![giphy](demonstration/running.gif)

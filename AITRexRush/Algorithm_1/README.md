@@ -1,19 +1,32 @@
 # AI TRexRush
 ```sh
-Just a test version!
-see https://mp.weixin.qq.com/s/---yW1v6seT0pcizllTXxw to learn more details.
+Just a test version! use AI to play TRexRush.
 ```
 
-# Environment(Tested)
+# Introduction in Chinese
+https://mp.weixin.qq.com/s/---yW1v6seT0pcizllTXxw
+
+# Environment
 - Windows10
 - Python3.5+(have installed necessary dependencies)
+	- numpy
+	- selenium
+	- pillow
+	- pyautogui
+	- matplotlib
+	- opencv-python
+	- keras
+	- tensorflow-gpu==1.5.0
+- Graphics: 1050Ti(train and test)
 
 # Usage
-#### step1
+#### train
 ```sh
-pip install -r requirements.txt
+Modify the options in train.py according to your needs, then run:
+python train.py
 ```
-#### step2
+#### test
 ```sh
-run "python auto_play.py"
+Modify the options in auto_play.py according to your needs, then run:
+python auto_play.py
 ```

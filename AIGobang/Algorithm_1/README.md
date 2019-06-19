@@ -1,17 +1,19 @@
 # AI Gobang
 ```sh
-see https://mp.weixin.qq.com/s/Y9EQfAMD82fbsSicK9uQ_A to learn more details.
+use AI to play Gobang.
 ```
 
-# Environment(Tested)
+# Introduction in Chinese
+https://mp.weixin.qq.com/s/Y9EQfAMD82fbsSicK9uQ_A
+
+# Environment
 - Windows10
-- Python3.5+(have installed necessary dependencies)
+- Python3.5+
 
 # Usage
-#### step1
 ```sh
-run "python AI_Gobang.py"
+run "python AI_Gobang.py".
 ```
 
 # Game Display
-![giphy](effect/running.gif)
+![giphy](demonstration/running.gif)
