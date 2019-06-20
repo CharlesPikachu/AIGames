@@ -93,9 +93,8 @@ class GamePacmanAgent():
 		self.ghost_sprites.draw(self.screen)
 		# get frame
 		frame = pygame.surfarray.array3d(pygame.display.get_surface())
-		frame = cv2.transpose(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
+		frame = cv2.transpose(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY))
 		frame = cv2.resize(frame, self.config.image_size)
-		frame = cv2.Canny(cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY), 50, 150)
 		frame.resize((*self.config.image_size, 1))
 		# show the score
 		self.score += reward
