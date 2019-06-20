@@ -94,8 +94,9 @@ class GamePacmanAgent():
 		# get frame
 		frame = pygame.surfarray.array3d(pygame.display.get_surface())
 		frame = cv2.transpose(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
-		self.config.image_size = frame.shape[0]//4, frame.shape[1]//4, frame.shape[2]
-		frame = cv2.resize(frame, self.config.image_size[:2])
+		frame = cv2.resize(frame, self.config.image_size)
+		frame = cv2.Canny(cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY), 50, 150)
+		frame.resize((*self.config.image_size, 1))
 		# show the score
 		self.score += reward
 		text = self.font.render('SCORE: %s' % self.score, True, self.config.WHITE)

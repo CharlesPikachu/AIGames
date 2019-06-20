@@ -19,16 +19,32 @@ from collections import deque
 
 '''dqn'''
 class DQNet(nn.Module):
-	def __init__(self, load_pretrain, config, **kwargs):
+	def __init__(self, config, **kwargs):
 		super(DQNet, self).__init__()
-		self.resnet18 = torchvision.models.resnet18()
-		if load_pretrain:
-			self.resnet18.load_state_dict(torch.load(config.pretrain_model_path))
-		if config.num_continuous_frames != 1:
-			self.resnet18.conv1 = nn.Conv2d(in_channels=3*config.num_continuous_frames, out_channels=64, kernel_size=7, stride=2, padding=3, bias=False)
-		self.resnet18.fc = nn.Linear(in_features=512, out_features=4, bias=True)
+		self.conv1 = nn.Conv2d(in_channels=config.num_continuous_frames, out_channels=16, kernel_size=5, stride=2, padding=2)
+		self.conv2 = nn.Conv2d(in_channels=16, out_channels=32, kernel_size=3, stride=2, padding=1)
+		self.conv3 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, stride=2, padding=1)
+		self.conv4 = nn.Conv2d(in_channels=64, out_channels=128, kernel_size=3, stride=2, padding=1)
+		self.conv5 = nn.Conv2d(in_channels=128, out_channels=128, kernel_size=3, stride=2, padding=1)
+		self.fc1 = nn.Linear(in_features=128*(config.image_size[0]//32)*(config.image_size[1]//32), out_features=512)
+		self.fc2 = nn.Linear(in_features=512, out_features=256)
+		self.fc3 = nn.Linear(in_features=256, out_features=4)
+		self.relu = nn.ReLU(inplace=True)
 	def forward(self, x):
-		x = self.resnet18(x)
+		x = self.conv1(x)
+		x = self.relu(x)
+		x = self.conv2(x)
+		x = self.relu(x)
+		x = self.conv3(x)
+		x = self.relu(x)
+		x = self.conv4(x)
+		x = self.relu(x)
+		x = self.conv5(x).view(x.size(0), -1)
+		x = self.fc1(x)
+		x = self.relu(x)
+		x = self.fc2(x)
+		x = self.relu(x)
+		x = self.fc3(x)
 		return x
 
 
@@ -40,8 +56,6 @@ class DQNAgent():
 		self.config = config
 		self.game_memories = deque()
 		self.mse_loss = nn.MSELoss(reduction='elementwise_mean')
-		self.mean_rgb = (0.485, 0.456, 0.406)
-		self.std_rgb = (0.229, 0.224, 0.225)
 	'''train'''
 	def train(self):
 		# prepare
@@ -92,13 +106,9 @@ class DQNAgent():
 				rewards = []
 				for each in random.sample(self.game_memories, self.config.batch_size):
 					image_input = each[0].astype(np.float32) / 255.
-					for i in range(3):
-						image_input[:, :, i] = (image_input[:, :, i] - self.mean_rgb[i]) / self.std_rgb[i]
 					image_input.resize((1, *image_input.shape))
 					images_input.append(image_input)
 					image_prev_input = each[1].astype(np.float32) / 255.
-					for i in range(3):
-						image_prev_input[:, :, i] = (image_prev_input[:, :, i] - self.mean_rgb[i]) / self.std_rgb[i]
 					image_prev_input.resize((1, *image_prev_input.shape))
 					images_prev_input.append(image_prev_input)
 					rewards.append(each[2])

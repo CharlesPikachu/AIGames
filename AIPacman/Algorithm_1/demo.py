@@ -16,7 +16,7 @@ from gameAPI.game import GamePacmanAgent
 def runDemo():
 	if config.operator == 'ai':
 		game_pacman_agent = GamePacmanAgent(config)
-		dqn_net = DQNet(False, config)
+		dqn_net = DQNet(config)
 		dqn_net.load_state_dict(torch.load(config.weightspath))
 		dqn_agent = DQNAgent(game_pacman_agent, dqn_net, config)
 		dqn_agent.test()

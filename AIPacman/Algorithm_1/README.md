@@ -14,6 +14,7 @@ preparing
 	- torchvision == 0.2.2
 	- opencv-python
 	- numpy
+	- matplotlib
 - Graphics: Tian XP(train) / 1050Ti(test)
 
 # Usage

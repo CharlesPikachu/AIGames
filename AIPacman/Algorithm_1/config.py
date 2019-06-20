@@ -12,18 +12,17 @@ import os
 '''train'''
 batch_size = 32
 max_explore_iterations = 5000
-max_memory_size = 100000
+max_memory_size = 50000
 max_train_iterations = 1000000
-save_interval = 5000
+save_interval = 10000
 save_dir = 'model_saved'
-num_continuous_frames = 1
-image_size = None
+num_continuous_frames = 6
+image_size = (224, 224)
 logfile = 'train.log'
 use_cuda = True
 eps_start = 1.0 # prob to explore at first
 eps_end = 0.1 # prob to explore finally
 eps_num_steps = 10000
-pretrain_model_path = 'pretrained/resnet18.pth' # imagenet pretrained model path
 
 '''test'''
 weightspath = os.path.join(save_dir, str(max_train_iterations)+'.pkl') # trained model path
