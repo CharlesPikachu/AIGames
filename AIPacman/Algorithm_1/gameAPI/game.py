@@ -10,6 +10,7 @@ import cv2
 import sys
 import random
 import pygame
+import numpy as np
 from .sprites import *
 
 
@@ -19,6 +20,7 @@ class LayoutParser():
 		self.gamemap = self.__parse(config.layout_filepath)
 		self.height = len(self.gamemap)
 		self.width = len(self.gamemap[0])
+		config.frame_size = (self.height, self.width)
 	'''parse .lay'''
 	def __parse(self, filepath):
 		gamemap = []
@@ -68,19 +70,19 @@ class GamePacmanAgent():
 			food_eaten = pygame.sprite.spritecollide(pacman, self.food_sprites, True)
 			capsule_eaten = pygame.sprite.spritecollide(pacman, self.capsule_sprites, True)
 		nonscared_ghost_sprites = pygame.sprite.Group()
-		scared_ghost_sprites = pygame.sprite.Group()
+		dead_ghost_sprites = pygame.sprite.Group()
 		for ghost in self.ghost_sprites:
 			if ghost.is_scared:
 				if pygame.sprite.spritecollide(ghost, self.pacman_sprites, False):
-					reward += 8
-					scared_ghost_sprites.add(ghost)
+					reward += 50
+					dead_ghost_sprites.add(ghost)
 			else:
 				nonscared_ghost_sprites.add(ghost)
-		for ghost in scared_ghost_sprites:
+		for ghost in dead_ghost_sprites:
 			ghost.reset()
-		del scared_ghost_sprites
-		reward += len(food_eaten) * 2
-		reward += len(capsule_eaten) * 4
+		del dead_ghost_sprites
+		reward += len(food_eaten) * 10
+		reward += len(capsule_eaten) * 10
 		if len(capsule_eaten) > 0:
 			for ghost in self.ghost_sprites:
 				ghost.is_scared = True
@@ -92,10 +94,38 @@ class GamePacmanAgent():
 		self.pacman_sprites.draw(self.screen)
 		self.ghost_sprites.draw(self.screen)
 		# get frame
-		frame = pygame.surfarray.array3d(pygame.display.get_surface())
-		frame = cv2.transpose(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY))
-		frame = cv2.resize(frame, self.config.image_size)
-		frame.resize((*self.config.image_size, 1))
+		num_element_types = self.config.num_element_types
+		frame = np.zeros((*self.config.frame_size, num_element_types))
+		ghost_matrix = np.zeros(self.config.frame_size)
+		scared_ghost_matrix = np.zeros(self.config.frame_size)
+		food_matrix = np.zeros(self.config.frame_size)
+		wall_matrix = np.zeros(self.config.frame_size)
+		capsule_matrix = np.zeros(self.config.frame_size)
+		pacman_matrix = np.zeros(self.config.frame_size)
+		for ghost in self.ghost_sprites:
+			y, x = ghost.rect.left // self.config.grid_size, ghost.rect.top // self.config.grid_size
+			if ghost.is_scared:
+				scared_ghost_matrix[x, y] = 1
+			else:
+				ghost_matrix[x, y] = 1
+		for food in self.food_sprites:
+			y, x = food.rect.left // self.config.grid_size, food.rect.top // self.config.grid_size
+			food_matrix[x, y] = 1
+		for wall in self.wall_sprites:
+			y, x = wall.rect.left // self.config.grid_size, wall.rect.top // self.config.grid_size
+			wall_matrix[x, y] = 1
+		for capsule in self.capsule_sprites:
+			y, x = capsule.rect.left // self.config.grid_size, capsule.rect.top // self.config.grid_size
+			capsule_matrix[x, y] = 1
+		for pacman in self.pacman_sprites:
+			y, x = pacman.rect.left // self.config.grid_size, pacman.rect.top // self.config.grid_size
+			pacman_matrix[x, y] = 1
+		frame[:, :, 0] = wall_matrix
+		frame[:, :, 1] = pacman_matrix
+		frame[:, :, 2] = ghost_matrix
+		frame[:, :, 3] = scared_ghost_matrix
+		frame[:, :, 4] = food_matrix
+		frame[:, :, 5] = capsule_matrix
 		# show the score
 		self.score += reward
 		text = self.font.render('SCORE: %s' % self.score, True, self.config.WHITE)
@@ -105,13 +135,13 @@ class GamePacmanAgent():
 		if len(self.food_sprites) == 0 and len(self.capsule_sprites) == 0:
 			is_win = True
 			is_gameover = True
-			reward = 20
+			reward = 100
 		if pygame.sprite.groupcollide(self.pacman_sprites, nonscared_ghost_sprites, False, False):
 			is_win = False
 			is_gameover = True
-			reward = -20
+			reward = -500
 		if reward == 0:
-			reward = -2
+			reward = -1
 		return frame, is_win, is_gameover, reward, action
 	'''run game(user control, for test)'''
 	def runGame(self):
@@ -135,19 +165,18 @@ class GamePacmanAgent():
 				food_eaten = pygame.sprite.spritecollide(pacman, self.food_sprites, True)
 				capsule_eaten = pygame.sprite.spritecollide(pacman, self.capsule_sprites, True)
 			nonscared_ghost_sprites = pygame.sprite.Group()
-			scared_ghost_sprites = pygame.sprite.Group()
+			dead_ghost_sprites = pygame.sprite.Group()
 			for ghost in self.ghost_sprites:
 				if ghost.is_scared:
 					if pygame.sprite.spritecollide(ghost, self.pacman_sprites, False):
-						self.score += 8
-						scared_ghost_sprites.add(ghost)
+						self.score += 50
+						dead_ghost_sprites.add(ghost)
 				else:
 					nonscared_ghost_sprites.add(ghost)
-			for ghost in scared_ghost_sprites:
+			for ghost in dead_ghost_sprites:
 				ghost.reset()
-			del scared_ghost_sprites
-			self.score += len(food_eaten) * 2
-			self.score += len(capsule_eaten) * 4
+			self.score += len(food_eaten) * 10
+			self.score += len(capsule_eaten) * 10
 			if len(capsule_eaten) > 0:
 				for ghost in self.ghost_sprites:
 					ghost.is_scared = True
@@ -208,10 +237,10 @@ class GamePacmanAgent():
 					wall_sprites.add(Wall(*position, self.config.grid_size, self.config.grid_size, self.config.SKYBLUE))
 				elif elem == 'food':
 					position = [j*self.config.grid_size+self.config.grid_size*0.5, i*self.config.grid_size+self.config.grid_size*0.5]
-					food_sprites.add(Food(*position, 12, 12, self.config.GREEN, self.config.WHITE))
+					food_sprites.add(Food(*position, 10, 10, self.config.GREEN, self.config.WHITE))
 				elif elem == 'capsule':
 					position = [j*self.config.grid_size+self.config.grid_size*0.5, i*self.config.grid_size+self.config.grid_size*0.5]
-					capsule_sprites.add(Food(*position, 24, 24, self.config.GREEN, self.config.WHITE))
+					capsule_sprites.add(Food(*position, 16, 16, self.config.GREEN, self.config.WHITE))
 				elif elem == 'Pacman':
 					position = [j*self.config.grid_size+self.config.grid_size*0.5, i*self.config.grid_size+self.config.grid_size*0.5]
 					pacman_sprites.add(Pacman(*position, self.config.pacman_image_path, (self.config.grid_size, self.config.grid_size)))

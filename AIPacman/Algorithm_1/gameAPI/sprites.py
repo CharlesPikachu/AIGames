@@ -56,7 +56,7 @@ class Ghost(pygame.sprite.Sprite):
 		self.is_scared = False
 		self.is_scared_timer = 40
 		self.is_scared_count = 0
-		self.random_step_first = 50
+		self.random_step_first = 100
 	'''update'''
 	def update(self, wall_sprites, gate_sprites, method='random', pacman_sprites=None):
 		if self.random_step_first > 0:
@@ -88,7 +88,7 @@ class Ghost(pygame.sprite.Sprite):
 		return True
 	'''reset'''
 	def reset(self):
-		self.random_step_first = 50
+		self.random_step_first = 100
 		self.rect.center = (self.ori_x, self.ori_y)
 		self.is_scared_count = 0
 		self.is_scared = False

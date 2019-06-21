@@ -11,7 +11,6 @@ preparing
 - python 3.5+(have installed the neccessary dependencies)
 	- pytorch == 0.4.1
 	- pygame == 1.9.6
-	- torchvision == 0.2.2
 	- opencv-python
 	- numpy
 	- matplotlib

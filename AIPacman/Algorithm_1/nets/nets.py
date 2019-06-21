@@ -11,7 +11,6 @@ import sys
 import time
 import torch
 import random
-import torchvision
 import numpy as np
 import torch.nn as nn
 from collections import deque
@@ -21,27 +20,19 @@ from collections import deque
 class DQNet(nn.Module):
 	def __init__(self, config, **kwargs):
 		super(DQNet, self).__init__()
-		self.conv1 = nn.Conv2d(in_channels=config.num_continuous_frames, out_channels=32, kernel_size=7, stride=4, padding=3)
-		self.conv2 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, stride=2, padding=1)
-		self.conv3 = nn.Conv2d(in_channels=64, out_channels=64, kernel_size=3, stride=2, padding=1)
-		self.conv4 = nn.Conv2d(in_channels=64, out_channels=64, kernel_size=3, stride=1, padding=1)
-		self.fc1 = nn.Linear(in_features=64*(config.image_size[0]//16)*(config.image_size[1]//16), out_features=1024)
-		self.fc2 = nn.Linear(in_features=1024, out_features=256)
-		self.fc3 = nn.Linear(in_features=256, out_features=4)
+		self.conv1 = nn.Conv2d(in_channels=config.num_element_types*config.num_continuous_frames, out_channels=16, kernel_size=3, stride=1, padding=1)
+		self.conv2 = nn.Conv2d(in_channels=16, out_channels=32, kernel_size=3, stride=1, padding=1)
+		self.fc1 = nn.Linear(in_features=config.frame_size[0]*config.frame_size[1]*32, out_features=256)
+		self.fc2 = nn.Linear(in_features=256, out_features=4)
 		self.relu = nn.ReLU(inplace=True)
 	def forward(self, x):
 		x = self.conv1(x)
 		x = self.relu(x)
 		x = self.conv2(x)
-		x = self.relu(x)
-		x = self.conv3(x)
-		x = self.relu(x)
-		x = self.conv4(x).view(x.size(0), -1)
+		x = self.relu(x).view(x.size(0), -1)
 		x = self.fc1(x)
 		x = self.relu(x)
 		x = self.fc2(x)
-		x = self.relu(x)
-		x = self.fc3(x)
 		return x
 
 
@@ -63,7 +54,7 @@ class DQNAgent():
 		FloatTensor = torch.cuda.FloatTensor if self.config.use_cuda else torch.FloatTensor
 		# GoGoGo
 		frames = []
-		optimizer = torch.optim.Adam(self.dqn_net.parameters())
+		optimizer = torch.optim.Adam(self.dqn_net.parameters(), lr=2e-4)
 		num_iter = 0
 		image = None
 		image_prev = None
@@ -102,10 +93,10 @@ class DQNAgent():
 				actions = []
 				rewards = []
 				for each in random.sample(self.game_memories, self.config.batch_size):
-					image_input = each[0].astype(np.float32) / 255.
+					image_input = each[0].astype(np.float32)
 					image_input.resize((1, *image_input.shape))
 					images_input.append(image_input)
-					image_prev_input = each[1].astype(np.float32) / 255.
+					image_prev_input = each[1].astype(np.float32)
 					image_prev_input.resize((1, *image_prev_input.shape))
 					images_prev_input.append(image_prev_input)
 					rewards.append(each[2])
@@ -125,7 +116,7 @@ class DQNAgent():
 				prob = max(self.config.eps_start-(self.config.eps_start-self.config.eps_end)/self.config.eps_num_steps*num_iter, self.config.eps_end)
 				if random.random() > prob:
 					with torch.no_grad():
-						image_input = image.astype(np.float32) / 255.
+						image_input = image.astype(np.float32)
 						image_input.resize((1, *image_input.shape))
 						image_input_torch = torch.from_numpy(image_input).permute(0, 3, 1, 2).type(FloatTensor)
 						action_pred = self.dqn_net(image_input_torch).view(-1).tolist()
@@ -154,7 +145,7 @@ class DQNAgent():
 				image = np.concatenate(frames, -1)
 				if random.random() > self.config.eps_end:
 					with torch.no_grad():
-						image_input = image.astype(np.float32) / 255.
+						image_input = image.astype(np.float32)
 						image_input.resize((1, *image_input.shape))
 						image_input_torch = torch.from_numpy(image_input).permute(0, 3, 1, 2).type(FloatTensor)
 						action_pred = self.dqn_net(image_input_torch).view(-1).tolist()
