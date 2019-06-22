@@ -44,4 +44,4 @@ pacman_image_path = ('pacman', os.path.join(os.getcwd(), 'gameAPI/images/pacman.
 font_path = os.path.join(os.getcwd(), 'gameAPI/font/ALGER.TTF')
 grid_size = 32
 operator = 'ai' # 'person' or 'ai', used in demo.py
-ghost_action_method = 'catchup' # 'random' or 'catchup', ghost using 'catchup' is more intelligent than 'random'.
+ghost_action_method = 'random' # 'random' or 'catchup', ghost using 'catchup' is more intelligent than 'random'.

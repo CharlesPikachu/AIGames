@@ -25,6 +25,7 @@ class DQNet(nn.Module):
 		self.fc1 = nn.Linear(in_features=config.frame_size[0]*config.frame_size[1]*32, out_features=256)
 		self.fc2 = nn.Linear(in_features=256, out_features=4)
 		self.relu = nn.ReLU(inplace=True)
+		self.__initWeights()
 	def forward(self, x):
 		x = self.conv1(x)
 		x = self.relu(x)
@@ -34,6 +35,15 @@ class DQNet(nn.Module):
 		x = self.relu(x)
 		x = self.fc2(x)
 		return x
+	def __initWeights(self):
+		nn.init.normal_(self.conv1.weight, std=0.01)
+		nn.init.normal_(self.conv2.weight, std=0.01)
+		nn.init.normal_(self.fc1.weight, std=0.01)
+		nn.init.normal_(self.fc2.weight, std=0.01)
+		nn.init.constant_(self.conv1.bias, 0.1)
+		nn.init.constant_(self.conv2.bias, 0.1)
+		nn.init.constant_(self.fc1.bias, 0.1)
+		nn.init.constant_(self.fc2.bias, 0.1)
 
 
 '''dqn agent'''
