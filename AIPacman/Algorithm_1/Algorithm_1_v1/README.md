@@ -1,10 +1,10 @@
 # AI Pacman
 ```sh
-use AI to play Pacman.
+use AI to play Pacman, fail to train this version.
 ```
 
 # Introduction in Chinese
-preparing
+https://mp.weixin.qq.com/s/SJd-3qH4W4GMMLZSmvFk1w
 
 # Environment
 - Ubuntu 16.04(train) / Windows10(test)
@@ -19,14 +19,14 @@ preparing
 # Usage
 #### train
 ```sh
-Modify the config.py according to your needs and some explanation in config.py, then run:
+Modify the config.py according to your needs with the help of some explanations in config.py, then run:
 python train.py
 ```
 #### test
 ```sh
-Modify the config.py according to your needs and some explanations in config.py, then run:
+Modify the config.py according to your needs with the help of some explanations in config.py, then run:
 python demo.py
 ```
 
-# Game Display
+# Game Display(Fail to train this version)
 ![giphy](demonstration/running.gif)

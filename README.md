@@ -37,7 +37,7 @@ You can star this repository to keep track of the project if it's helpful for yo
 	- [demonstration](https://github.com/CharlesPikachu/AIGames/tree/master/AIPianoTiles/Algorithm_1/demonstration)
 #### AIPacman
 - Algorithm_1
-	- [introduction](preparing)
+	- [introduction](https://mp.weixin.qq.com/s/SJd-3qH4W4GMMLZSmvFk1w)
 	- [code](https://github.com/CharlesPikachu/AIGames/tree/master/AIPianoTiles/Algorithm_1)
 	- [demonstration](https://github.com/CharlesPikachu/AIGames/tree/master/AIPianoTiles/Algorithm_1/demonstration)
 
