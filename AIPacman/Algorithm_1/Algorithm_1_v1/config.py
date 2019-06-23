@@ -7,6 +7,7 @@ Author:
 	Charles的皮卡丘
 '''
 import os
+import torch
 
 
 '''train'''
@@ -19,7 +20,7 @@ save_dir = 'model_saved'
 frame_size = None # calculated automatically according to the layout file
 num_continuous_frames = 1
 logfile = 'train.log'
-use_cuda = True
+use_cuda = torch.cuda.is_available()
 eps_start = 1.0 # prob to explore at first
 eps_end = 0.1 # prob to explore finally
 eps_num_steps = 10000

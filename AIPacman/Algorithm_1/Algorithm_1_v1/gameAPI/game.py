@@ -74,15 +74,15 @@ class GamePacmanAgent():
 		for ghost in self.ghost_sprites:
 			if ghost.is_scared:
 				if pygame.sprite.spritecollide(ghost, self.pacman_sprites, False):
-					reward += 50
+					reward += 6
 					dead_ghost_sprites.add(ghost)
 			else:
 				nonscared_ghost_sprites.add(ghost)
 		for ghost in dead_ghost_sprites:
 			ghost.reset()
 		del dead_ghost_sprites
-		reward += len(food_eaten) * 10
-		reward += len(capsule_eaten) * 10
+		reward += len(food_eaten) * 2
+		reward += len(capsule_eaten) * 3
 		if len(capsule_eaten) > 0:
 			for ghost in self.ghost_sprites:
 				ghost.is_scared = True
@@ -135,13 +135,13 @@ class GamePacmanAgent():
 		if len(self.food_sprites) == 0 and len(self.capsule_sprites) == 0:
 			is_win = True
 			is_gameover = True
-			reward = 100
+			reward = 10
 		if pygame.sprite.groupcollide(self.pacman_sprites, nonscared_ghost_sprites, False, False):
 			is_win = False
 			is_gameover = True
-			reward = -500
+			reward = -15
 		if reward == 0:
-			reward = -1
+			reward = -2
 		return frame, is_win, is_gameover, reward, action
 	'''run game(user control, for test)'''
 	def runGame(self):
@@ -169,14 +169,14 @@ class GamePacmanAgent():
 			for ghost in self.ghost_sprites:
 				if ghost.is_scared:
 					if pygame.sprite.spritecollide(ghost, self.pacman_sprites, False):
-						self.score += 50
+						self.score += 6
 						dead_ghost_sprites.add(ghost)
 				else:
 					nonscared_ghost_sprites.add(ghost)
 			for ghost in dead_ghost_sprites:
 				ghost.reset()
-			self.score += len(food_eaten) * 10
-			self.score += len(capsule_eaten) * 10
+			self.score += len(food_eaten) * 2
+			self.score += len(capsule_eaten) * 3
 			if len(capsule_eaten) > 0:
 				for ghost in self.ghost_sprites:
 					ghost.is_scared = True

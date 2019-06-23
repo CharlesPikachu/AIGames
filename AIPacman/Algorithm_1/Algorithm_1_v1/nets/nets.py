@@ -64,7 +64,7 @@ class DQNAgent():
 		FloatTensor = torch.cuda.FloatTensor if self.config.use_cuda else torch.FloatTensor
 		# GoGoGo
 		frames = []
-		optimizer = torch.optim.Adam(self.dqn_net.parameters(), lr=2e-4)
+		optimizer = torch.optim.Adam(self.dqn_net.parameters())
 		num_iter = 0
 		image = None
 		image_prev = None
