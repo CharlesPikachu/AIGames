@@ -39,7 +39,7 @@ You can star this repository to keep track of the project if it's helpful for yo
 - Algorithm_1
 	- [introduction](https://mp.weixin.qq.com/s/SJd-3qH4W4GMMLZSmvFk1w)
 	- [code](https://github.com/CharlesPikachu/AIGames/tree/master/AIPacman/Algorithm_1)
-	- [demonstration](https://github.com/CharlesPikachu/AIGames/tree/master/AIPacman/Algorithm_1_v2/demonstration)
+	- [demonstration](https://github.com/CharlesPikachu/AIGames/tree/master/AIPacman/Algorithm_1/Algorithm_1_v2/demonstration)
 
 # More
 #### WeChat Official Accounts
