@@ -1,18 +1,19 @@
-# AI Gobang
+# AIPong
 ```sh
-use AI to play Gobang.
+use AI to play Pong.
 ```
 
 # Introduction in Chinese
 preparing
 
 # Environment
-- Windows10
+- Ubuntu16.04(train)/Windows10(test)
 - Python3.5+(have installed necessary dependencies)
-	- tensorflow-gpu == 1.5.0
+	- tensorflow-gpu == 1.13.0
 	- opencv-python
 	- numpy
-- Graphics: 1050Ti(train and test)
+	- pygame
+- Graphics: TitanXP(train)/1050Ti(test)
 
 # Usage
 #### train

@@ -1,17 +1,22 @@
 '''
-主函数
-作者: Charles
-公众号: Charles的皮卡丘
+Function:
+	train the model
+Author:
+	Charles
+微信公众号:
+	Charles的皮卡丘
 '''
 import config
 import tensorflow as tf
-from nets.qNet import DQN
+from model.model import DQN
 
 
-def main():
+'''train'''
+def train():
 	session = tf.InteractiveSession()
-	DQN(config.options).train(session)
+	DQN(config).train(session)
 
 
+'''run'''
 if __name__ == '__main__':
-	main()
+	train()

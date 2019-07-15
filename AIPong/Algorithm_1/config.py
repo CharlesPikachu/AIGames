@@ -1,22 +1,23 @@
 '''
-配置文件
-作者: Charles
-公众号: Charles的皮卡丘
+Function:
+	config file.
+Author:
+	Charles
+微信公众号:
+	Charles的皮卡丘
 '''
-options = {
-			'info': 'DQN for game of Pong',
-			'num_action': 3,
-			'lr': 1e-6,
-			'batch_size': 32,
-			'modelDir': 'modelSaved',
-			'init_prob': 1.0,
-			'end_prob': 1e-6,
-			'OBSERVE': 50000,
-			'EXPLORE': 50000,
-			'REPLAY_MEMORY': 500000,
-			'action_interval': 7,
-			'gamma': 0.99,
-			'save_interval': 20000,
-			'logfile': 'train.log',
-			'is_train': True
-			}
+
+
+mode = 'train' # 'train' or 'test'
+lr = 2e-4
+batch_size = 32
+model_dir = 'modelSaved'
+logfile = 'train.log'
+init_prob = 1.0
+end_prob = 0.01
+prob_num_steps = 10000
+frame_size = (96, 96)
+max_memory_size = 100000
+num_explore_steps = 5000
+save_interval = 10000
+max_train_iteration = 1000000
