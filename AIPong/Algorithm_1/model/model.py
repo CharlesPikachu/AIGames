@@ -74,11 +74,13 @@ class DQN():
 				else:
 					raise RuntimeError('Hhhhh, your code in net_out for action should be wrong I think...')
 				frame_now, action, reward, terminal, paddle_1_score, paddle_2_score = game_agent.nextFrame(action=action_pred)
-				frame_now = cv2.resize(frame_now, self.config.frame_size)
+				frame_now = cv2.resize(frame_now, self.config.frame_size) / 255.
 			# save data
-			data_deque.append((frame_pre, frame_now, terminal, reward, np.array(action)))
+			if frame_pre is not None:
+				data_deque.append((frame_pre, frame_now, terminal, reward, np.array(action)))
 			if len(data_deque) > self.config.max_memory_size:
 				data_deque.popleft()
+			frame_pre = frame_now.copy()
 			# prob decrease
 			if prob > self.config.end_prob:
 				prob = max(self.config.end_prob, prob-(self.config.init_prob-self.config.end_prob)/self.config.num_explore_steps)
@@ -107,8 +109,8 @@ class DQN():
 					train_step.run(feed_dict={target_placeholder: target_batch,
 											  action_placeholder: action_batch,
 											  net_in: frame_pre_batch})
-					if num_frames % self.save_interval:
-						saver.save(session, os.path.join(self.model_dir, 'DQN_Pong'), global_step=num_frame)
+					if num_frames % self.config.save_interval == 0:
+						saver.save(session, os.path.join(self.config.model_dir, 'DQN_Pong'), global_step=num_frames)
 					log_content = '[STATE]: Train, [FRAMES]: %s, [GAMES]: %s, [WINS]: %s, [LOSS]: %s...' % (num_frames, num_games, num_win_games, str(session.run(loss, feed_dict={target_placeholder: target_batch,
 																																												   action_placeholder: action_batch,
 																																												   net_in: frame_pre_batch})))
@@ -131,7 +133,7 @@ class DQN():
 		b_conv2 = self.__initBiasVariable([64])
 		w_conv3 = self.__initWeightVariable([3, 3, 64, 64])
 		b_conv3 = self.__initBiasVariable([64])
-		w_fc1 = self.__initWeightVariable([(self.config.frame_size[0]//8)*(self.config.frame_size[1]//8), 512])
+		w_fc1 = self.__initWeightVariable([(self.config.frame_size[0]//8)*(self.config.frame_size[1]//8)*64, 512])
 		b_fc1 = self.__initBiasVariable([512])
 		w_fc2 = self.__initWeightVariable([512, 3])
 		b_fc2 = self.__initBiasVariable([3])
@@ -139,7 +141,7 @@ class DQN():
 		conv1 = tf.nn.leaky_relu(self.__conv2d(x, w_conv1, 4)+b_conv1, alpha=0.1)
 		conv2 = tf.nn.leaky_relu(self.__conv2d(conv1, w_conv2, 2)+b_conv2, alpha=0.1)
 		conv3 = tf.nn.leaky_relu(self.__conv2d(conv2, w_conv3, 1)+b_conv3, alpha=0.1)
-		flatten = tf.reshape(conv3, [-1, (self.config.frame_size[0]//8)*(self.config.frame_size[1]//8)])
+		flatten = tf.reshape(conv3, [-1, (self.config.frame_size[0]//8)*(self.config.frame_size[1]//8)*64])
 		fc1 = tf.nn.leaky_relu(tf.matmul(flatten, w_fc1)+b_fc1, alpha=0.1)
 		fc2 = tf.matmul(fc1, w_fc2) + b_fc2
 		return x, fc2
