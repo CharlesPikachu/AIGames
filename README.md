@@ -27,7 +27,7 @@ You can star this repository to keep track of the project if it's helpful for yo
 	- [demonstration](https://github.com/CharlesPikachu/AIGames/tree/master/AITRexRush/Algorithm_1/demonstration)
 #### AIPong
 - Algorithm_1
-	- introduction(preparing)
+	- [introduction](https://mp.weixin.qq.com/s/By1pxz6oerwByqzwZIugqA)
 	- [code](https://github.com/CharlesPikachu/AIGames/tree/master/AIPong/Algorithm_1)
 	- [demonstration](https://github.com/CharlesPikachu/AIGames/tree/master/AIPong/Algorithm_1/demonstration)
 #### AIPianoTiles
