@@ -13,17 +13,17 @@ preparing
 	- opencv-python
 	- numpy
 	- pygame
-- Graphics: TitanXP(train)/1050Ti(test)
+- Graphics: TITANXP(train)/1050Ti(test)
 
 # Usage
 #### train
 ```sh
-Modify the config.py according to your needs and some explanation in config.py, then run:
+Modify the config.py according to your needs and some explanation in config.py(mode should be "train"), then run:
 python main.py
 ```
 #### test
 ```sh
-Modify the config.py according to your needs and some explanations in config.py, then run:
+Modify the config.py according to your needs and some explanations in config.py(mode should be "test"), then run:
 python main.py
 ```
 

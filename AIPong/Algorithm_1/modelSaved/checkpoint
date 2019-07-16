@@ -1,0 +1,6 @@
+model_checkpoint_path: "DQN_Pong-700000"
+all_model_checkpoint_paths: "DQN_Pong-660000"
+all_model_checkpoint_paths: "DQN_Pong-670000"
+all_model_checkpoint_paths: "DQN_Pong-680000"
+all_model_checkpoint_paths: "DQN_Pong-690000"
+all_model_checkpoint_paths: "DQN_Pong-700000"

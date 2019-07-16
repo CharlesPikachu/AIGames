@@ -20,4 +20,4 @@ frame_size = (96, 96)
 max_memory_size = 100000
 num_explore_steps = 5000
 save_interval = 10000
-max_train_iteration = 1000000
+max_iterations = 1000000
