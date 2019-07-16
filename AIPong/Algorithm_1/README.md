@@ -4,7 +4,7 @@ use AI to play Pong.
 ```
 
 # Introduction in Chinese
-preparing
+https://mp.weixin.qq.com/s/By1pxz6oerwByqzwZIugqA
 
 # Environment
 - Ubuntu16.04(train)/Windows10(test)
