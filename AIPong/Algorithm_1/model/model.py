@@ -111,7 +111,7 @@ class DQN():
 											  net_in: frame_pre_batch})
 					if num_frames % self.config.save_interval == 0:
 						saver.save(session, os.path.join(self.config.model_dir, 'DQN_Pong'), global_step=num_frames)
-						self.__logging('[INFO]: Save model in %s...' % self.config.model_dir)
+						self.__logging('[INFO]: Save model in %s...' % self.config.model_dir, self.config.logfile)
 					log_content = '[STATE]: Train, [FRAMES]: %s, [GAMES]: %s, [WINS]: %s, [LOSS]: %s...' % (num_frames, num_games, num_win_games, str(session.run(loss, feed_dict={target_placeholder: target_batch,
 																																												   action_placeholder: action_batch,
 																																												   net_in: frame_pre_batch})))
