@@ -1,5 +1,5 @@
 # AI Snake 
-```sh
+```
 use AI to play snake.
 ```
 
@@ -7,17 +7,16 @@ use AI to play snake.
 https://mp.weixin.qq.com/s/gjS_DkZmPzIINDoJhnIKow
 
 # Environment
-- Windows10
-- Python3.5+(have installed necessary dependencies)
-	- pygame
+```
+System: Windows10
+Python: python3.5+ with necessary dependencies.
+```
 
 # Usage
-#### step1
-```sh
-pip install -r requirements.txt
 ```
-#### step2
-```sh
+step1:
+pip install -r requirements.txt
+Step2:
 run "python AI_snake.py".
 ```
 

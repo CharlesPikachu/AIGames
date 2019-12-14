@@ -1,5 +1,5 @@
 # AI Gobang
-```sh
+```
 use AI to play Gobang.
 ```
 
@@ -7,11 +7,13 @@ use AI to play Gobang.
 https://mp.weixin.qq.com/s/Y9EQfAMD82fbsSicK9uQ_A
 
 # Environment
-- Windows10
-- Python3.5+
+```
+System: Windows10.
+Python: python3.5+ with necessary dependencies.
+```
 
 # Usage
-```sh
+```
 run "python AI_Gobang.py".
 ```
 

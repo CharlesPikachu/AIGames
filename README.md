@@ -1,45 +1,26 @@
 # AIGames
-```sh
+```
 use AI to play some games.
 You can star this repository to keep track of the project if it's helpful for you, thank you for your support.
 ```
 
 # Contents
 #### AISnake
-- Algorithm_1
-	- [introduction](https://mp.weixin.qq.com/s/gjS_DkZmPzIINDoJhnIKow)
-	- [code](https://github.com/CharlesPikachu/AIGames/tree/master/AIsnake/Algorithm_1)
-	- [demonstration](https://github.com/CharlesPikachu/AIGames/tree/master/AIsnake/Algorithm_1/demonstration)
+- [Algorithm_1](https://github.com/CharlesPikachu/AIGames/tree/master/AIsnake/Algorithm_1)
 #### AITetris
-- Algorithm_1
-	- [introduction](https://mp.weixin.qq.com/s/9u3HR6aY-XQq56fqGedx5A)
-	- [code](https://github.com/CharlesPikachu/AIGames/tree/master/AITetris/Algorithm_1)
-	- [demonstration](https://github.com/CharlesPikachu/AIGames/tree/master/AITetris/Algorithm_1/demonstration)
+- [Algorithm_1](https://github.com/CharlesPikachu/AIGames/tree/master/AITetris/Algorithm_1)
 #### AIGobang
-- Algorithm_1
-	- [introduction](https://mp.weixin.qq.com/s/Y9EQfAMD82fbsSicK9uQ_A)
-	- [code](https://github.com/CharlesPikachu/AIGames/tree/master/AIGobang/Algorithm_1)
-	- [demonstration](https://github.com/CharlesPikachu/AIGames/tree/master/AIGobang/Algorithm_1/demonstration)
+- [Algorithm_1](https://github.com/CharlesPikachu/AIGames/tree/master/AIGobang/Algorithm_1)
 #### AITRexRush
-- Algorithm_1
-	- [introduction](https://mp.weixin.qq.com/s/---yW1v6seT0pcizllTXxw)
-	- [code](https://github.com/CharlesPikachu/AIGames/tree/master/AITRexRush/Algorithm_1)
-	- [demonstration](https://github.com/CharlesPikachu/AIGames/tree/master/AITRexRush/Algorithm_1/demonstration)
+- [Algorithm_1](https://github.com/CharlesPikachu/AIGames/tree/master/AITRexRush/Algorithm_1)
 #### AIPong
-- Algorithm_1
-	- [introduction](https://mp.weixin.qq.com/s/By1pxz6oerwByqzwZIugqA)
-	- [code](https://github.com/CharlesPikachu/AIGames/tree/master/AIPong/Algorithm_1)
-	- [demonstration](https://github.com/CharlesPikachu/AIGames/tree/master/AIPong/Algorithm_1/demonstration)
+- [Algorithm_1](https://github.com/CharlesPikachu/AIGames/tree/master/AIPong/Algorithm_1)
 #### AIPianoTiles
-- Algorithm_1
-	- [introduction](https://mp.weixin.qq.com/s/FxC-enNRkZW4l4INmj5XkA)
-	- [code](https://github.com/CharlesPikachu/AIGames/tree/master/AIPianoTiles/Algorithm_1)
-	- [demonstration](https://github.com/CharlesPikachu/AIGames/tree/master/AIPianoTiles/Algorithm_1/demonstration)
+- [Algorithm_1](https://github.com/CharlesPikachu/AIGames/tree/master/AIPianoTiles/Algorithm_1)
 #### AIPacman
-- Algorithm_1
-	- [introduction](https://mp.weixin.qq.com/s/SJd-3qH4W4GMMLZSmvFk1w)
-	- [code](https://github.com/CharlesPikachu/AIGames/tree/master/AIPacman/Algorithm_1)
-	- [demonstration](https://github.com/CharlesPikachu/AIGames/tree/master/AIPacman/Algorithm_1/Algorithm_1_v2/demonstration)
+- [Algorithm_1](https://github.com/CharlesPikachu/AIGames/tree/master/AIPacman/Algorithm_1)
+#### AIFlappybird
+- Algorithm_1: preparing
 
 # More
 #### WeChat Official Accounts

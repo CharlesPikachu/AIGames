@@ -1,5 +1,5 @@
 # AI Piano Tiles
-```sh
+```
 use AI to play Piano Tiles.
 ```
 
@@ -7,22 +7,18 @@ use AI to play Piano Tiles.
 https://mp.weixin.qq.com/s/FxC-enNRkZW4l4INmj5XkA
 
 # Environment
-- Windows10
-- Python3.5+(have installed necessary dependencies)
-	- opencv-python
-	- numpy
-	- pyscreenshot
-	- pyautogui
+```
+System: Windows10.
+Python: python3.5+ with necessary dependencies.
+```
 	
 # Usage
-#### step1
-```sh
-pip install -r requirements.txt
 ```
-#### step2
-```sh
+Step1:
+pip install -r requirements.txt
+Step2:
 open http://www.4399.com/flash/154247_3.htm
-run "python autoplay.py".
+then, run "python autoplay.py".
 ```
 
 # Game Display
