@@ -5,4 +5,4 @@ pyautogui
 matplotlib
 opencv-python
 keras
-tensorflow-gpu==1.5.0
+tensorflow-gpu==1.15.0
