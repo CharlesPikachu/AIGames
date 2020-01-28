@@ -1,4 +1,4 @@
-tensorflow-gpu==1.13.0
+tensorflow-gpu==1.15.2
 opencv-python
 numpy
 pygame
