@@ -1,6 +1,11 @@
-# 作者: Charles
-# 公众号: Charles的皮卡丘
-# AI贪吃蛇
+'''
+Function:
+	AI贪吃蛇
+Author:
+	Charles
+微信公众号:
+	Charles的皮卡丘
+'''
 import random
 import pygame
 import sys

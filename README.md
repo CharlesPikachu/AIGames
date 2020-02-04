@@ -19,8 +19,6 @@ You can star this repository to keep track of the project if it's helpful for yo
 - [Algorithm_1](https://github.com/CharlesPikachu/AIGames/tree/master/AIPianoTiles/Algorithm_1)
 #### AIPacman
 - [Algorithm_1](https://github.com/CharlesPikachu/AIGames/tree/master/AIPacman/Algorithm_1)
-#### AIFlappybird
-- Algorithm_1: preparing
 
 # More
 #### WeChat Official Accounts
