@@ -6,15 +6,18 @@ use AI to play Gobang.
 # Introduction in Chinese
 https://mp.weixin.qq.com/s/Y9EQfAMD82fbsSicK9uQ_A
 
-# Environment
+# Environment(Tested)
 ```
-System: Windows10.
-Python: python3.5+ with necessary dependencies.
+OS: Windows10
+Python: Python3.5+(have installed necessary dependencies)
 ```
 
 # Usage
 ```
-run "python AI_Gobang.py".
+Step1:
+pip install -r requirements.txt
+Step2:
+run "python AIGobang.py"
 ```
 
 # Game Display
