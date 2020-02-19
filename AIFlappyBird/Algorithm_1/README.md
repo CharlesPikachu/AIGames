@@ -4,7 +4,7 @@ use AI to play FlappyBird.
 ```
 
 # Introduction in Chinese
-
+https://mp.weixin.qq.com/s/nmqX05c2qS3Jeg66W5NOzA
 
 # Environment(Tested)
 ```
