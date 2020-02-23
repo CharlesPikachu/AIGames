@@ -50,7 +50,7 @@ def showScore(screen, score, number_images):
 
 
 '''the main function to be called'''
-def main(mode, policy, agent):
+def main(mode, policy, agent, modelpath):
 	screen = initGame()
 	# load the necessary game resources
 	# --load the game sounds
@@ -180,4 +180,4 @@ if __name__ == '__main__':
 		agent.loadModel(modelpath)
 	# begin game
 	while True:
-		main(mode, policy, agent)
+		main(mode, policy, agent, modelpath)

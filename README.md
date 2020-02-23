@@ -14,7 +14,7 @@ You can star this repository to keep track of the project if it's helpful for yo
 |   AIPong        |     1                                    |      [click](https://github.com/CharlesPikachu/AIGames/tree/master/AIPong)        |     AI乒乓球                  |
 |   AIPianoTiles  |     1                                    |      [click](https://github.com/CharlesPikachu/AIGames/tree/master/AIPianoTiles)  |     AI别再踩白块了            |
 |   AIPacman      |     1                                    |      [click](https://github.com/CharlesPikachu/AIGames/tree/master/AIPacman)      |     AI吃豆人                  |
-|   AIFlappyBird  |     1                                    |      [click](https://github.com/CharlesPikachu/AIGames/tree/master/AIFlappyBird)  |     AI飞扬的小鸟              |
+|   AIFlappyBird  |     2                                    |      [click](https://github.com/CharlesPikachu/AIGames/tree/master/AIFlappyBird)  |     AI飞扬的小鸟              |
 
 # More
 #### WeChat Official Accounts
