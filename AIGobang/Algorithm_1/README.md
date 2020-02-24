@@ -1,6 +1,6 @@
-# AI Gobang
+# AIGobang
 ```
-use AI to play Gobang.
+The first algorithm to play Gobang.
 ```
 
 # Introduction in Chinese
@@ -14,10 +14,7 @@ Python: Python3.5+(have installed necessary dependencies)
 
 # Usage
 ```
-Step1:
-pip install -r requirements.txt
-Step2:
-run "python AIGobang.py"
+Configure the operating environment, and then run "python AIGobang.py".
 ```
 
 # Game Display

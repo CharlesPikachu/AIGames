@@ -3,4 +3,4 @@ pygame
 opencv-python
 numpy
 matplotlib
-torchvision
+torchvision==0.2.2

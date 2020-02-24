@@ -1,6 +1,6 @@
-# AI Gobang
+# AIFlappyBird
 ```
-use AI to play FlappyBird.
+The first algorithm to play FlappyBird.
 ```
 
 # Introduction in Chinese
