@@ -1,23 +1,20 @@
-# AI Tetris
+# AITetris
 ```
-use AI to play Tetris.
+The first algorithm to play Tetris.
 ```
 
 # Introduction in Chinese
 https://mp.weixin.qq.com/s/9u3HR6aY-XQq56fqGedx5A
 
-# Environment
+# Environment(Tested)
 ```
-System: Windows10
-Python: python3.5+ with necessary dependencies.
+OS: Windows10
+Python: Python3.5+(have installed necessary dependencies)
 ```
 
 # Usage
 ```
-step1:
-pip install -r requirements.txt
-step2:
-run "python Tetris.py".
+Configure the operating environment, and the run "python Tetris.py".
 ```
 
 # References:

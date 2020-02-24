@@ -1,23 +1,20 @@
-# AI Snake 
+# AISnake 
 ```
-use AI to play snake.
+The first algorithm to play snake.
 ```
 
 # Introduction in Chinese
 https://mp.weixin.qq.com/s/gjS_DkZmPzIINDoJhnIKow
 
-# Environment
+# Environment(Tested)
 ```
-System: Windows10
-Python: python3.5+ with necessary dependencies.
+OS: Windows10
+Python: Python3.5+(have installed necessary dependencies)
 ```
 
 # Usage
 ```
-step1:
-pip install -r requirements.txt
-Step2:
-run "python AI_snake.py".
+Configure the operating environment, and the run "python AI_snake.py".
 ```
 
 # Game Display
