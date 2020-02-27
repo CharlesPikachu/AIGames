@@ -126,6 +126,7 @@ class DQNAgent():
 	def test(self):
 		if self.config.use_cuda:
 			self.dqn_net = self.dqn_net.cuda()
+		self.dqn_net.eval()
 		FloatTensor = torch.cuda.FloatTensor if self.config.use_cuda else torch.FloatTensor
 		frames = []
 		action_pred = None

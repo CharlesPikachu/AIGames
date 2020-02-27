@@ -48,9 +48,8 @@ class DQNAgent():
         self.dqn_model = deepQNetwork(imagesize=self.imagesize, in_channels=self.num_input_frames, num_actions=self.num_actions)
         self.dqn_model = self.dqn_model.cuda() if self.use_cuda else self.dqn_model
         # define the optimizer and loss function if mode is train
-        if mode == 'train':
-            self.optimizer = torch.optim.Adam(self.dqn_model.parameters(), lr=1e-4)
-            self.mse_loss = nn.MSELoss(reduction='elementwise_mean')
+        self.optimizer = torch.optim.Adam(self.dqn_model.parameters(), lr=1e-4)
+        self.mse_loss = nn.MSELoss(reduction='elementwise_mean')
     '''get the next action'''
     def nextAction(self, reward):
         # some necessary update
@@ -58,7 +57,7 @@ class DQNAgent():
             self.epsilon -= (self.init_epsilon - self.final_epsilon) / self.num_explores
         self.num_iters += 1
         # make decision
-        if self.num_iters < self.num_observes or random.random() <= self.epsilon:
+        if random.random() <= self.epsilon:
             action = random.choice([0, 1])
         else:
             with torch.no_grad():
@@ -99,7 +98,7 @@ class DQNAgent():
         self.optimizer.load_state_dict(model_dict['optimizer'])
         self.max_score = data_dict['max_score']
         self.epsilon = data_dict['epsilon'] if self.mode == 'train' else self.final_epsilon
-        self.num_iters = data_dict['num_iters'] if self.mode == 'train' else self.num_observes + 1
+        self.num_iters = data_dict['num_iters']
         self.replay_memory_record = data_dict['replay_memory_record']
     '''save model'''
     def saveModel(self, modelpath):
