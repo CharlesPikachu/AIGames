@@ -109,11 +109,13 @@ class DQNAgent():
 				prob = max(self.config.eps_start-(self.config.eps_start-self.config.eps_end)/self.config.eps_num_steps*num_iter, self.config.eps_end)
 				if random.random() > prob:
 					with torch.no_grad():
+						self.dqn_net.eval()
 						image_input = image.astype(np.float32) / 255.
 						image_input.resize((1, *image_input.shape))
 						image_input_torch = torch.from_numpy(image_input).permute(0, 3, 1, 2).type(FloatTensor)
 						action_pred = self.dqn_net(image_input_torch).view(-1).tolist()
 						action_pred = self.formatAction(action_pred, outformat='oriactionformat')
+						self.dqn_net.train()
 				else:
 					action_pred = None
 				self.__logging('[STATE]: training, [ITER]: %d, [LOSS]: %.3f, [ACTION]: %s, [BEST SCORE]: %d, [NUMWINS/NUMGAMES]: %d/%d' % (num_iter, loss.item(), str(action_pred), score_best, num_wins, num_games), self.config.logfile)

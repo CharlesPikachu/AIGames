@@ -61,9 +61,11 @@ class DQNAgent():
             action = random.choice([0, 1])
         else:
             with torch.no_grad():
+                self.dqn_model.eval()
                 x = torch.from_numpy(self.input_image).type(self.FloatTensor)
                 preds = self.dqn_model(x).view(-1)
                 action = preds.argmax().item()
+                self.dqn_model.train()
         # train the model if demand
         loss = torch.tensor([0])
         if self.mode == 'train' and self.num_iters > self.num_observes:
