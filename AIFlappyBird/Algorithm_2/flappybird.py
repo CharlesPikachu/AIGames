@@ -96,14 +96,24 @@ def main(mode, agent, modelpath):
 	is_game_running = True
 	action = 1
 	while is_game_running:
-		pygame.event.pump()
-		reward = 0.1
 		screen.fill(0)
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
 				if mode == 'train': agent.saveModel(modelpath)
 				pygame.quit()
 				sys.exit()
+		# --calculate reward
+		pipe_nearest = None
+		delta_x = 10000
+		for pipe in pipe_sprites:
+			if pipe.type_ == 'bottom' and pipe.rect.right > bird.rect.left:
+				if pipe.rect.right - bird.rect.left < delta_x:
+					delta_x = pipe.rect.left - bird.rect.left
+					pipe_nearest = pipe
+		if (bird.rect.bottom - 30 > pipe_nearest.rect.top) and (bird.rect.top + 30 < pipe_nearest.rect.top + cfg.PIPE_GAP_SIZE) and (pipe_nearest.rect.left < cfg.SCREENWIDTH):
+			reward = 0.5
+		else:
+			reward = 0.1
 		# --use DQNAgent to play flappybird
 		if action:
 			bird.setFlapped()
@@ -142,14 +152,17 @@ def main(mode, agent, modelpath):
 				pipe_sprites.remove(pipe)
 				flag = True
 		if flag: is_add_pipe = True
-		# --blit the necessary game elements on the screen, remove screen.blit(backgroud_image, (0, 0)) for better learning
+		# --get image
+		pipe_sprites.draw(screen)
+		bird.draw(screen)
+		image = pygame.surfarray.array3d(pygame.display.get_surface())
+		image = image[:, :int(0.79*cfg.SCREENHEIGHT), :]
+		# --blit the necessary game elements on the screen
+		screen.blit(backgroud_image, (0, 0))
 		pipe_sprites.draw(screen)
 		screen.blit(other_images['base'], base_pos)
 		showScore(screen, score, number_images)
 		bird.draw(screen)
-		# --get image
-		image = pygame.surfarray.array3d(pygame.display.get_surface())
-		image = image[:, :int(0.79*cfg.SCREENHEIGHT), :]
 		# --record the action and corresponding reward
 		agent.record(action, reward, score, is_game_running, image)
 		# --make decision
@@ -173,7 +186,8 @@ if __name__ == '__main__':
 	modelpath = 'checkpoints/dqn.pth'
 	agent = DQNAgent(mode=mode, backuppath=modelpath)
 	if os.path.isfile(modelpath):
-		agent.loadModel(modelpath)
+		if mode == 'test' or (args.resume and mode == 'train'):
+			agent.loadModel(modelpath)
 	# begin game
 	while True:
 		main(mode, agent, modelpath)

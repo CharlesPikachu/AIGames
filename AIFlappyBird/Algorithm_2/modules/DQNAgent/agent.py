@@ -30,7 +30,7 @@ class DQNAgent():
         self.num_input_frames = 4
         self.discount_factor = 0.99
         self.num_observes = 3200
-        self.num_explore = 3e6
+        self.num_explores = 3e6
         self.epsilon = 0.1
         self.init_epsilon = 0.1
         self.final_epsilon = 1e-4
@@ -55,7 +55,7 @@ class DQNAgent():
     def nextAction(self, reward):
         # some necessary update
         if self.epsilon > self.final_epsilon and self.num_iters > self.num_observes:
-            self.epsilon -= (self.init_epsilon - self.final_epsilon) / self.num_explore
+            self.epsilon -= (self.init_epsilon - self.final_epsilon) / self.num_explores
         self.num_iters += 1
         # make decision
         if self.num_iters < self.num_observes or random.random() <= self.epsilon:
@@ -86,9 +86,9 @@ class DQNAgent():
                 self.saveModel(self.backuppath)
         # print some infos
         if self.mode == 'train':
-            print('ITER: %s, EPSILON: %s, ACTION: %s, REWARD: %s, LOSS: %s, MAX_SCORE: %s' % (self.num_iters, self.epsilon, action, reward, loss.item(), self.max_score))
+            print('STATE: train, ITER: %s, EPSILON: %s, ACTION: %s, REWARD: %s, LOSS: %s, MAX_SCORE: %s' % (self.num_iters, self.epsilon, action, reward, loss.item(), self.max_score))
         else:
-            print('ACTION: %s, MAX_SCORE: %s', (action, self.max_score))
+            print('STATE: test, ACTION: %s, MAX_SCORE: %s' % (action, self.max_score))
         return action
     '''load model'''
     def loadModel(self, modelpath):
@@ -99,7 +99,7 @@ class DQNAgent():
         self.optimizer.load_state_dict(model_dict['optimizer'])
         self.max_score = data_dict['max_score']
         self.epsilon = data_dict['epsilon'] if self.mode == 'train' else self.final_epsilon
-        self.num_iters = data_dict['num_iters']
+        self.num_iters = data_dict['num_iters'] if self.mode == 'train' else self.num_observes + 1
         self.replay_memory_record = data_dict['replay_memory_record']
     '''save model'''
     def saveModel(self, modelpath):
@@ -128,7 +128,7 @@ class DQNAgent():
             self.input_image = self.input_image.reshape(1, self.input_image.shape[0], self.input_image.shape[1], self.input_image.shape[2])
         else:
             image = image.reshape(1, 1, image.shape[0], image.shape[1])
-            next_input_image = np.append(self.input_image[:, :self.num_input_frames-1, :, :], image, axis=1)
+            next_input_image = np.append(image, self.input_image[:, :self.num_input_frames-1, :, :], axis=1)
             action = [0, 1] if action else [1, 0]
             self.replay_memory_record.append((self.input_image, np.array(action), np.array([reward]), next_input_image, np.array([int(not is_game_running)])))
             self.input_image = next_input_image

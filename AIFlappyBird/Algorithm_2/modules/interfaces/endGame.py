@@ -25,7 +25,7 @@ def endGame(screen, sounds, showScore, score, number_images, bird, pipe_sprites,
 				if event.key == pygame.K_SPACE or event.key == pygame.K_UP:
 					return
 		boundary_values = [0, base_pos[-1]]
-		bird.update(boundary_values, float(clock.tick(cfg.FPS))/1000.)
+		bird.update(boundary_values)
 		screen.blit(backgroud_image, (0, 0))
 		pipe_sprites.draw(screen)
 		screen.blit(other_images['base'], base_pos)
