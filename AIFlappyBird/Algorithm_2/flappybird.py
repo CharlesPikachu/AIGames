@@ -102,18 +102,8 @@ def main(mode, agent, modelpath):
 				if mode == 'train': agent.saveModel(modelpath)
 				pygame.quit()
 				sys.exit()
-		# --calculate reward
-		pipe_nearest = None
-		delta_x = 10000
-		for pipe in pipe_sprites:
-			if pipe.type_ == 'bottom' and pipe.rect.right > bird.rect.left:
-				if pipe.rect.right - bird.rect.left < delta_x:
-					delta_x = pipe.rect.left - bird.rect.left
-					pipe_nearest = pipe
-		if (bird.rect.bottom - 30 > pipe_nearest.rect.top) and (bird.rect.top + 30 < pipe_nearest.rect.top + cfg.PIPE_GAP_SIZE) and (pipe_nearest.rect.left < cfg.SCREENWIDTH):
-			reward = 0.5
-		else:
-			reward = 0.1
+		# --a general reward
+		reward = 0.1
 		# --use DQNAgent to play flappybird
 		if action:
 			bird.setFlapped()
