@@ -47,7 +47,7 @@ class DQNAgent():
         # the instanced model
         self.dqn_model = deepQNetwork(imagesize=self.imagesize, in_channels=self.num_input_frames, num_actions=self.num_actions)
         self.dqn_model = self.dqn_model.cuda() if self.use_cuda else self.dqn_model
-        # define the optimizer and loss function if mode is train
+        # define the optimizer and loss function
         self.optimizer = torch.optim.Adam(self.dqn_model.parameters(), lr=1e-4)
         self.mse_loss = nn.MSELoss(reduction='elementwise_mean')
     '''get the next action'''

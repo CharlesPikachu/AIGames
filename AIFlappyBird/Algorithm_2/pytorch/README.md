@@ -15,6 +15,8 @@ Python: Python3.5+(have installed necessary dependencies)
 
 # Usage
 ```
+usage: flappybird.py [-h] [--mode MODE] [--resume]
+
 Use dpn to play flappybird
 
 optional arguments:
