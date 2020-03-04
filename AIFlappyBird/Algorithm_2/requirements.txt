@@ -1,5 +1,0 @@
-pygame
-argparse
-torch==0.4.1
-scikit-image
-numpy
