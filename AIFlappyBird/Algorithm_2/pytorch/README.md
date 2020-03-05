@@ -4,7 +4,7 @@ The second algorithm(pytorch version) to play FlappyBird.
 ```
 
 # Introduction in Chinese
-on the way
+https://mp.weixin.qq.com/s/8KCuDzSG4uEZe4qAnHIedA
 
 # Environment(Tested)
 ```
