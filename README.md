@@ -7,7 +7,7 @@ You can star this repository to keep track of the project if it's helpful for yo
 # Contents
 |   Name          |     Number of implemented algorithms     |      Code                                                                         |     In Chinese                |
 |   :----:        |     :----:                               |      :----:                                                                       |     :----:                    |
-|   AISnake       |     1                                    |      [click](https://github.com/CharlesPikachu/AIGames/tree/master/AIsnake)       |     AI贪吃蛇                  |
+|   AISnake       |     1                                    |      [click](https://github.com/CharlesPikachu/AIGames/tree/master/AISnake)       |     AI贪吃蛇                  |
 |   AITetris      |     1                                    |      [click](https://github.com/CharlesPikachu/AIGames/tree/master/AITetris)      |     AI俄罗斯方块              |
 |   AIGobang      |     1                                    |      [click](https://github.com/CharlesPikachu/AIGames/tree/master/AIGobang)      |     AI五子棋                  |
 |   AITRexRush    |     1                                    |      [click](https://github.com/CharlesPikachu/AIGames/tree/master/AITRexRush)    |     AIChrome浏览器小恐龙游戏  |
