@@ -66,7 +66,7 @@ class DQNAgent():
             states = np.concatenate(states)
             states1 = np.concatenate(states1)
             targets = self.dqn_model.predict(states1)
-            targets[range(32), actions] = rewards + self.discount_factor * np.max(self.dqn_model.predict(states1), axis=1) * is_game_running
+            targets[range(self.batch_size), actions] = rewards + self.discount_factor * np.max(self.dqn_model.predict(states1), axis=1) * is_game_running
             loss = self.dqn_model.train_on_batch(states, targets)
             if self.num_iters % self.save_interval == 0:
                 self.saveModel(self.backuppath)
