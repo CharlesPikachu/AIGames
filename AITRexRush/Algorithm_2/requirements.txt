@@ -1,0 +1,4 @@
+selenium
+pillow
+numpy
+opencv-python

@@ -1,8 +1,6 @@
-numpy
+argparse
+torch >= 0.4.1
 selenium
 pillow
-pyautogui
-matplotlib
+numpy
 opencv-python
-keras
-tensorflow-gpu==1.5.0
