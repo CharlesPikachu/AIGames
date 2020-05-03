@@ -4,7 +4,7 @@ The second algorithm to play TRexRush.
 ```
 
 # Introduction in Chinese
-preparing
+https://mp.weixin.qq.com/s/ebW-Eg1RyqluEqYoioSavg
 
 # Environment(Tested)
 ```
