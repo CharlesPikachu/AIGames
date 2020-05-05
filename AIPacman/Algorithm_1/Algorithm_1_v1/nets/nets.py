@@ -116,7 +116,7 @@ class DQNAgent():
 				images_prev_input_torch = torch.from_numpy(np.concatenate(images_prev_input, 0)).permute(0, 3, 1, 2).type(FloatTensor)
 				# --compute loss
 				optimizer.zero_grad()
-				q_t = self.dqn_net(images_input_torch)
+				q_t = self.dqn_net(images_input_torch).detach()
 				q_t = torch.max(q_t, dim=1)[0]
 				loss = self.mse_loss(torch.Tensor(rewards).type(FloatTensor) + (1 - torch.Tensor(is_gameovers).type(FloatTensor)) * (0.95 * q_t),
 									 (self.dqn_net(images_prev_input_torch) * torch.Tensor(actions).type(FloatTensor)).sum(1))

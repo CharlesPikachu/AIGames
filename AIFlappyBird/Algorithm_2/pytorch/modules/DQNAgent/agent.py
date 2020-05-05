@@ -77,7 +77,7 @@ class DQNAgent():
             rewards = torch.from_numpy(np.concatenate(rewards, axis=0)).type(self.FloatTensor).view(self.batch_size)
             states1 = torch.from_numpy(np.concatenate(states1, axis=0)).type(self.FloatTensor)
             is_gameovers = torch.from_numpy(np.concatenate(is_gameovers, axis=0)).type(self.FloatTensor).view(self.batch_size)
-            q_t = self.dqn_model(states1)
+            q_t = self.dqn_model(states1).detach()
             q_t = torch.max(q_t, dim=1)[0]
             loss = self.mse_loss(rewards + (1 - is_gameovers) * (self.discount_factor * q_t),
                                  (self.dqn_model(states) * actions).sum(1))
