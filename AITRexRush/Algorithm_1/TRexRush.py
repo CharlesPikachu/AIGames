@@ -32,7 +32,7 @@ def main():
 	if not os.path.exists('checkpoints'):
 		os.mkdir('checkpoints')
 	checkpointspath = 'checkpoints/dqn.pth'
-	agent = DQNAgent(mode=mode, checkpointspath=checkpointspath)
+	agent = DQNAgent(mode=mode, fps=cfg.FPS, checkpointspath=checkpointspath)
 	if os.path.isfile(checkpointspath):
 		if mode == 'test' or (args.resume and mode == 'train'):
 			agent.load(checkpointspath)

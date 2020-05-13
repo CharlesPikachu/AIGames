@@ -6,8 +6,10 @@ Author:
 微信公众号:
 	Charles的皮卡丘
 '''
+import cv2
 import time
 import base64
+import numpy as np
 from PIL import Image
 from io import BytesIO
 from selenium import webdriver
@@ -28,6 +30,7 @@ class GameController():
 		self.driver.get(cfg.GAME_URL)
 		self.driver.execute_script("Runner.config.ACCELERATION=0")
 		self.driver.execute_script("document.getElementsByClassName('runner-canvas')[0].id = 'runner-canvas'")
+		self.restart()
 		self.jump()
 	'''run'''
 	def run(self, action):
@@ -51,11 +54,11 @@ class GameController():
 	def state(self, type_):
 		assert type_ in ['crashed', 'playing', 'score']
 		if type_ == 'crashed':
-			return self.driver.execute_script("return Runner.instance_.crashed")
+			return self.driver.execute_script("return Runner.instance_.crashed;")
 		elif type_ == 'playing':
-			return self.driver.execute_script("return Runner.instance_.playing")
+			return self.driver.execute_script("return Runner.instance_.playing;")
 		else:
-			digits = self.driver.execute_script("return Runner.instance_.distanceMeter.digits")
+			digits = self.driver.execute_script("return Runner.instance_.distanceMeter.digits;")
 			score = ''.join(digits)
 			return int(score)
 	'''jump'''
@@ -66,20 +69,21 @@ class GameController():
 		self.driver.find_element_by_tag_name("body").send_keys(Keys.ARROW_DOWN)
 	'''pause the game'''
 	def pause(self):
-		return self.driver.execute_script("return Runner.instance_.stop()")
+		return self.driver.execute_script("Runner.instance_.stop();")
 	'''restart the game'''
 	def restart(self):
-		self.driver.execute_script("Runner.instance_.restart()")
+		self.driver.execute_script("Runner.instance_.restart();")
 		time.sleep(0.2)
 	'''resume the game'''
 	def resume(self):
-		return self.driver.execute_script("return Runner.instance_.play()")
+		return self.driver.execute_script("Runner.instance_.play();")
 	'''stop the game'''
 	def stop(self):
 		self.driver.close()
 	'''screenshot'''
 	def screenshot(self, area=(0, 0, 450, 150)):
 		image_b64 = self.driver.execute_script("canvasRunner = document.getElementById('runner-canvas'); return canvasRunner.toDataURL().substring(22)")
-		image = Image.open(BytesIO(base64.b64decode(image_b64))).convert('L')
-		image = image.crop(area)
+		image = np.array(Image.open(BytesIO(base64.b64decode(image_b64))))
+		image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+		image = image[area[0]: area[2], area[1]: area[3]]
 		return image

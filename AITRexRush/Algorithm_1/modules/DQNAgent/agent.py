@@ -18,11 +18,12 @@ from .network import DeepQNetwork
 
 '''dqn agent'''
 class DQNAgent():
-	def __init__(self, mode, checkpointspath, **kwargs):
+	def __init__(self, mode, fps, checkpointspath, **kwargs):
 		self.mode = mode
+		self.fps = fps
 		self.checkpointspath = checkpointspath
 		# define the necessary variables
-		self.imagesize = (96, 96)
+		self.imagesize = (84, 84)
 		self.num_input_frames = 4
 		self.num_actions = 2
 		self.save_interval = 5000
@@ -31,10 +32,10 @@ class DQNAgent():
 		self.init_epsilon = 0.1
 		self.end_epsilon = 1e-4
 		self.batch_size = 32
-		self.replay_memory_size = 2e4
+		self.replay_memory_size = 1e4
 		self.discount_factor = 0.99
 		self.num_observes = 3200
-		self.num_explores = 3e6
+		self.num_explores = 5e6
 		self.input_image = None
 		self.num_iters = 0
 		self.score = 0
@@ -45,15 +46,16 @@ class DQNAgent():
 		self.dqn_model = DeepQNetwork(self.imagesize, self.num_input_frames, self.num_actions)
 		self.dqn_model = self.dqn_model.cuda() if self.use_cuda else self.dqn_model
 		self.optimizer = torch.optim.Adam(self.dqn_model.parameters(), lr=1e-4)
-		self.loss_func = nn.MSELoss(reduction='none')
+		self.loss_func = nn.MSELoss(reduction='mean')
 	'''train the agent'''
 	def train(self, game_cotroller):
 		action = np.array([0] * self.num_actions)
 		action[0] = 1
 		image, score, is_dead = game_cotroller.run(action)
 		image = self.preprocess(image, self.imagesize)
-		self.input_image = np.stack((image,)*self.num_input_frames, axis=2)
+		self.input_image = np.tile(image, (self.num_input_frames, 1, 1))
 		self.input_image = self.input_image.reshape(1, self.input_image.shape[0], self.input_image.shape[1], self.input_image.shape[2])
+		last_time = 0
 		while True:
 			# randomly or use dqn_model to decide the action of T-Rex
 			action = np.array([0] * self.num_actions)
@@ -62,16 +64,15 @@ class DQNAgent():
 			else:
 				self.dqn_model.eval()
 				input_image = torch.from_numpy(self.input_image).type(self.FloatTensor)
-				input_image = input_image.permute(0, 3, 1, 2).contiguous()
 				preds = self.dqn_model(input_image).cpu().data.numpy()
 				action[np.argmax(preds)] = 1
 				self.dqn_model.train()
 			# perform the action
 			image, score, is_dead = game_cotroller.run(action)
 			image = self.preprocess(image, self.imagesize)
-			image = image.reshape(1, image.shape[0], image.shape[1], 1)
+			image = image.reshape(1, image.shape[0], image.shape[1], image.shape[2])
 			input_image_prev = self.input_image.copy()
-			self.input_image = np.append(image, self.input_image[:, :, :, :self.num_input_frames-1], axis=3)
+			self.input_image = np.append(image, self.input_image[:, :self.num_input_frames-1, :, :], axis=1)
 			# get reward
 			if is_dead:
 				reward = -1
@@ -81,6 +82,12 @@ class DQNAgent():
 			self.score = score
 			if score > self.max_score:
 				self.max_score = score
+			# control the FPS
+			if last_time:
+				fps_now = 1 / (time.time() - last_time)
+				if fps_now > self.fps:
+					time.sleep(1 / self.fps - 1 / fps_now)
+			last_time = time.time()
 			# save the game data for training dqn
 			self.replay_memory_record.append([input_image_prev, self.input_image, np.array([np.argmax(action)]), np.array([int(is_dead)]), np.array([reward])])
 			if len(self.replay_memory_record) > self.replay_memory_size:
@@ -92,25 +99,23 @@ class DQNAgent():
 				minibatch = random.sample(self.replay_memory_record, self.batch_size)
 				states, states1, actions, is_deads, rewards = zip(*minibatch)
 				states = torch.from_numpy(np.concatenate(states)).type(self.FloatTensor)
-				states = states.permute(0, 3, 1, 2).contiguous()
 				states1 = torch.from_numpy(np.concatenate(states1)).type(self.FloatTensor)
-				states1 = states1.permute(0, 3, 1, 2).contiguous()
-				actions = np.concatenate(actions)
-				is_deads = np.concatenate(is_deads)
-				rewards = np.concatenate(rewards)
-				targets = self.dqn_model(states1).cpu().data.numpy()
-				targets[range(self.batch_size), actions] = rewards + self.discount_factor * np.max(self.dqn_model(states1).cpu().data.numpy(), axis=1) * (1 - is_deads)
-				targets = torch.from_numpy(targets).type(self.FloatTensor)
-				loss = self.loss_func(self.dqn_model(states), targets).sum() / self.batch_size
+				actions = torch.from_numpy(np.concatenate(actions)).type(self.FloatTensor).long()
+				is_deads = torch.from_numpy(np.concatenate(is_deads)).type(self.FloatTensor)
+				rewards = torch.from_numpy(np.concatenate(rewards)).type(self.FloatTensor)
+				with torch.no_grad():
+					targets = self.dqn_model(states).detach()
+					targets[:, actions] = rewards + self.discount_factor * self.dqn_model(states1).detach().max(-1)[0] * (1 - is_deads)
+				loss = self.loss_func(self.dqn_model(states), targets)
 				loss.backward()
 				self.optimizer.step()
-			# save the model
-			if self.num_iters % self.save_interval == 0:
-				self.save(self.checkpointspath)
 			# update epsilon
 			self.num_iters += 1
 			if (self.epsilon > self.end_epsilon) and (self.num_iters > self.num_observes):
 				self.epsilon -= (self.init_epsilon - self.end_epsilon) / self.num_explores
+			# save the model
+			if self.num_iters % self.save_interval == 0:
+				self.save(self.checkpointspath)
 			# print necessary info
 			print('[State]: train, [Iter]: %s, [Epsilon]: %s, [Action]: %s, [Reward]: %s, [Loss]: %s, [Score]: %s, [Max Score]: %s ' %  (self.num_iters, self.epsilon, np.argmax(action), reward, loss.item(), self.score, self.max_score))
 	'''test the agent'''
@@ -119,6 +124,7 @@ class DQNAgent():
 	'''load checkpoints'''
 	def load(self, checkpointspath):
 		print('Loading checkpoints from %s...' % checkpointspath)
+		print(torch.load(checkpointspath))
 		self.dqn_model.load_state_dict(torch.load(checkpointspath))
 	'''save checkpoints'''
 	def save(self, checkpointspath):
@@ -126,6 +132,6 @@ class DQNAgent():
 		torch.save(self.dqn_model.state_dict(), checkpointspath)
 	'''preprocess image'''
 	def preprocess(self, image, size):
-		image = np.array(image)
-		image = cv2.resize(image, size, interpolation=cv2.INTER_LINEAR)
+		image = cv2.resize(image, size)
+		image = np.expand_dims(image, 0)
 		return image
