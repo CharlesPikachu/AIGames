@@ -28,15 +28,15 @@ class DQNAgent():
 		self.num_actions = 3
 		self.save_interval = 5000
 		self.replay_memory_record = deque()
-		self.epsilon = 0.1
 		self.init_epsilon = 0.1
 		self.end_epsilon = 1e-4
+		self.epsilon = self.init_epsilon
 		self.batch_size = 32
 		self.replay_memory_size = 1e4
 		self.discount_factor = 0.99
-		self.pos_save_prob = 0.25
+		self.pos_save_prob = 0.1
 		self.num_observes = 3200
-		self.num_explores = 5e6
+		self.num_explores = 1e5
 		self.input_image = None
 		self.num_iters = 0
 		self.num_games = 0
@@ -94,7 +94,7 @@ class DQNAgent():
 			if score > self.max_score:
 				self.max_score = score
 			# save the game data for training dqn
-			if is_dead or random.random() < self.pos_save_prob:
+			if is_dead or random.random() <= self.pos_save_prob:
 				self.replay_memory_record.append([input_image_prev, self.input_image, action, np.array([int(is_dead)]), np.array([reward])])
 			if len(self.replay_memory_record) > self.replay_memory_size:
 				self.replay_memory_record.popleft()

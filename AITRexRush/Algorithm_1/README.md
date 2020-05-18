@@ -27,4 +27,4 @@ optional arguments:
 ```
 
 # Game Display
-preparing
+![giphy](demonstration/running.gif)
