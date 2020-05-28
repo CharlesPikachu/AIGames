@@ -6,6 +6,7 @@ Author:
 微信公众号:
 	Charles的皮卡丘
 '''
+import os
 import copy
 import random
 import pickle
@@ -86,7 +87,7 @@ class GeneticModel():
 		if not os.path.isfile(filepath):
 			return
 		fp = open(filepath, 'rb')
-		self.keeped_nets = pickle.load(filepath)
+		self.keeped_nets = pickle.load(fp)
 		self.populations = copy.deepcopy(self.keeped_nets)
 		for i in range(self.population_size - len(self.keeped_nets)):
 			self.populations.append(Network())
