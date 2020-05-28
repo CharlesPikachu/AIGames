@@ -6,7 +6,7 @@ The first algorithm to play TRexRush.
 # Introduction in Chinese
 https://mp.weixin.qq.com/s/_BpybHmIsIUh_n5CXtlftw
 
-# Environment(Tested)
+# Environment
 ```
 OS: Windows10
 Graphics card: 1050Ti

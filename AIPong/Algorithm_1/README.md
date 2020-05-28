@@ -6,7 +6,7 @@ The first algorithm to play Pong.
 # Introduction in Chinese
 https://mp.weixin.qq.com/s/By1pxz6oerwByqzwZIugqA
 
-# Environment(Tested)
+# Environment
 ```
 OS: Ubuntu 16.04(train) / Windows10(test)
 Graphics card: Tian XP(train) / 1050Ti(test)

@@ -6,7 +6,7 @@ The first algorithm to play Tetris.
 # Introduction in Chinese
 https://mp.weixin.qq.com/s/9u3HR6aY-XQq56fqGedx5A
 
-# Environment(Tested)
+# Environment
 ```
 OS: Windows10
 Python: Python3.5+(have installed necessary dependencies)

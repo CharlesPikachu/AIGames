@@ -6,7 +6,7 @@ The second algorithm(pytorch version) to play FlappyBird.
 # Introduction in Chinese
 https://mp.weixin.qq.com/s/8KCuDzSG4uEZe4qAnHIedA
 
-# Environment(Tested)
+# Environment
 ```
 OS: Ubuntu 16.04(train) / Windows10(test)
 Graphics card: Tian XP(train) / 1050Ti(test)

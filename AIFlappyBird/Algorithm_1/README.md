@@ -6,7 +6,7 @@ The first algorithm to play FlappyBird.
 # Introduction in Chinese
 https://mp.weixin.qq.com/s/nmqX05c2qS3Jeg66W5NOzA
 
-# Environment(Tested)
+# Environment
 ```
 OS: Windows10
 Python: Python3.5+(have installed necessary dependencies)

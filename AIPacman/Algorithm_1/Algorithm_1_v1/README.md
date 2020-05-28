@@ -6,7 +6,7 @@ The first algorithm to play Pacman, fail to train this version.
 # Introduction in Chinese
 https://mp.weixin.qq.com/s/SJd-3qH4W4GMMLZSmvFk1w
 
-# Environment(Tested)
+# Environment
 ```
 OS: Ubuntu 16.04(train) / Windows10(test)
 Graphics card: Tian XP(train) / 1050Ti(test)

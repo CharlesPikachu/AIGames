@@ -6,7 +6,7 @@ The first algorithm to play Piano Tiles.
 # Introduction in Chinese
 https://mp.weixin.qq.com/s/FxC-enNRkZW4l4INmj5XkA
 
-# Environment(Tested)
+# Environment
 ```
 OS: Windows10
 Python: python3.5+(have installed necessary dependencies)
