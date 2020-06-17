@@ -1,6 +1,6 @@
 # AISnake 
 ```
-The first algorithm to play snake.
+The first algorithm to play greedy snake.
 ```
 
 # Introduction in Chinese
