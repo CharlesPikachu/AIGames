@@ -4,7 +4,7 @@ The second algorithm to play greedy snake.
 ```
 
 # Introduction in Chinese
-preparing
+https://mp.weixin.qq.com/s/OT9yRMFsNowXBbwKqmzP-Q
 
 # Environment
 ```
