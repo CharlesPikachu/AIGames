@@ -14,10 +14,7 @@ from PyQt5.QtCore import Qt, QBasicTimer
 from PyQt5.QtWidgets import QMainWindow, QDesktopWidget, QApplication, QHBoxLayout, QLabel
 
 
-'''
-Function:
-	定义俄罗斯方块游戏类
-'''
+'''定义俄罗斯方块游戏类'''
 class TetrisGame(QMainWindow):
 	def __init__(self):
 		super().__init__()
@@ -122,6 +119,7 @@ class TetrisGame(QMainWindow):
 		self.updateWindow()
 
 
+'''run'''
 if __name__ == '__main__':
 	app = QApplication([])
 	tetris = TetrisGame()

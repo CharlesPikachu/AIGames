@@ -11,10 +11,7 @@ import math
 from modules.utils import *
 
 
-'''
-Function:
-	AI玩俄罗斯方块
-'''
+'''AI玩俄罗斯方块'''
 class TetrisAI():
 	def __init__(self, inner_board):
 		self.inner_board = inner_board

@@ -12,10 +12,7 @@ from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtGui import QColor, QPainter
 
 
-'''
-Function:
-	定义一个俄罗斯方块的形状
-'''
+'''定义一个俄罗斯方块的形状'''
 class tetrisShape():
 	def __init__(self, shape=0):
 		# 空块
@@ -78,10 +75,7 @@ class tetrisShape():
 		return min(xs), max(xs), min(ys), max(ys)
 
 
-'''
-Function:
-	内部板块
-'''
+'''内部板块'''
 class InnerBoard():
 	def __init__(self, width=10, height=22):
 		# 宽和长, 单位长度为小方块边长
@@ -134,6 +128,7 @@ class InnerBoard():
 		return removed_lines
 	'''坠落'''
 	def dropDown(self):
+		removed_lines = 0
 		while self.ableMove([self.current_coord[0], self.current_coord[1]+1]):
 			self.current_coord[1] += 1
 		x_min, x_max, y_min, y_max = self.current_tetris.getRelativeBoundary(self.current_direction)
@@ -210,10 +205,7 @@ class InnerBoard():
 		self.shape_statistics = [0] * 8
 
 
-'''
-Function:
-	外部板块
-'''
+'''外部板块'''
 class ExternalBoard(QFrame):
 	score_signal = pyqtSignal(str)
 	def __init__(self, parent, grid_size, inner_board):
@@ -247,10 +239,7 @@ class ExternalBoard(QFrame):
 		self.update()
 
 
-'''
-Function:
-	侧面板, 右边显示下一个俄罗斯方块的形状
-'''
+'''侧面板, 右边显示下一个俄罗斯方块的形状'''
 class SidePanel(QFrame):
 	def __init__(self, parent, grid_size, inner_board):
 		super().__init__(parent)
@@ -272,10 +261,7 @@ class SidePanel(QFrame):
 		self.update()
 
 
-'''
-Function:
-	给板块的一个Cell填色
-'''
+'''给板块的一个Cell填色'''
 def drawCell(painter, x, y, shape, grid_size):
 	colors = [0x000000, 0xCC6666, 0x66CC66, 0x6666CC, 0xCCCC66, 0xCC66CC, 0x66CCCC, 0xDAAA00]
 	if shape == 0:
