@@ -14,7 +14,7 @@ Python: Python3.5+(have installed necessary dependencies)
 
 # Usage
 ```
-Configure the operating environment, and the run "python Tetris.py".
+Configure the operating environment, and the run "python AITetris.py".
 ```
 
 # References:
